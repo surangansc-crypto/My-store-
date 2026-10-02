@@ -55,7 +55,7 @@
             font-weight: 600;
         }
 
-        /* Discount / Offer Bar */
+        /* Discount Banner */
         .discount-announcement-bar {
             background: #ff9800;
             color: #111;
@@ -464,7 +464,7 @@
 
         .modal-content {
             background: var(--white);
-            max-width: 580px;
+            max-width: 600px;
             margin: 20px auto;
             border-radius: 12px;
             padding: 22px;
@@ -515,7 +515,7 @@
         .admin-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 12px;
+            margin-top: 10px;
             font-size: 0.82rem;
         }
 
@@ -523,6 +523,7 @@
             border: 1px solid #e2e8f0;
             padding: 8px;
             text-align: left;
+            vertical-align: middle;
         }
 
         .admin-table th {
@@ -534,9 +535,14 @@
             background: #ef4444;
             color: white;
             border: none;
-            padding: 4px 8px;
+            padding: 5px 10px;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-del:hover {
+            background: #dc2626;
         }
 
         /* Floating WhatsApp Button */
@@ -651,7 +657,7 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Modal 1: User Product Registration (With Item Count & Discount calculation) -->
+    <!-- Modal 1: User Product Registration -->
     <div class="modal" id="userProdModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('userProdModal')">&times;</span>
@@ -699,9 +705,7 @@
                     <input type="number" id="upPrice" required placeholder="උදා: 1000" oninput="updatePricePreview()">
                 </div>
 
-                <div class="calc-preview" id="pricePreview">
-                    <!-- Dynamic preview loaded by JS -->
-                </div>
+                <div class="calc-preview" id="pricePreview"></div>
 
                 <div class="form-group">
                     <label><i class="fa-solid fa-images"></i> Gallery එකෙන් Photos 1-3ක් තෝරන්න:</label>
@@ -715,7 +719,7 @@
         </div>
     </div>
 
-    <!-- Modal 2: User Ad Submission (Auto-Play Slider Ad) -->
+    <!-- Modal 2: User Ad Submission -->
     <div class="modal" id="userAdModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('userAdModal')">&times;</span>
@@ -754,14 +758,14 @@
         </div>
     </div>
 
-    <!-- Modal 3: Complete Admin Panel (Rates, Discounts, Ads, Products) -->
+    <!-- Modal 3: Complete Admin Panel (With Delete Ads Feature) -->
     <div class="modal" id="adminModal">
         <div class="modal-content" style="max-width: 720px;">
             <span class="modal-close" onclick="closeModal('adminModal')">&times;</span>
             <h3 style="color: var(--primary-green);"><i class="fa-solid fa-gauge"></i> Admin Dashboard</h3>
             <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 15px;">ගාස්තු, Discounts, Ads සහ භාණ්ඩ පහසුවෙන්ම මෙතැනින් කළමනාකරණය කරන්න.</p>
 
-            <!-- Section 1: Change Rates & Discounts Live -->
+            <!-- Rates & Discounts -->
             <div style="background: #eef2ff; border: 1px solid #c7d2fe; padding: 14px; border-radius: 8px; margin-bottom: 15px;">
                 <h4 style="color: #3730a3; font-size: 0.95rem; margin-bottom: 8px;"><i class="fa-solid fa-sliders"></i> ගාස්තු සහ Discount Management</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -774,16 +778,16 @@
                         <input type="number" id="admAdFeeInput" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
                     </div>
                     <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">භාණ්ඩ 2ක් හෝ වැඩි නම් Discount (%):</label>
+                        <label style="font-size: 0.75rem; font-weight:600;">භාණ්ඩ 2ක් නම් Discount (%):</label>
                         <input type="number" id="admDiscount2Input" placeholder="උදා: 15" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
                     </div>
                     <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">භාණ්ඩ 3ක් හෝ වැඩි නම් Discount (%):</label>
+                        <label style="font-size: 0.75rem; font-weight:600;">භාණ්ඩ 3ක් හෝ වැඩි නම් (%):</label>
                         <input type="number" id="admDiscount3Input" placeholder="උදා: 25" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
                     </div>
                     <div style="grid-column: 1/-1;">
-                        <label style="font-size: 0.75rem; font-weight:600;">Top Bar Announcement / Offer Text:</label>
-                        <input type="text" id="admAnnouncementInput" placeholder="උදා: භාණ්ඩ 2ක් ලියාපදිංචි කරන විට 15% ක වට්ටමක්!" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                        <label style="font-size: 0.75rem; font-weight:600;">Top Bar Announcement Text:</label>
+                        <input type="text" id="admAnnouncementInput" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
                     </div>
                     <button onclick="adminSaveSettings()" class="btn-main" style="grid-column: 1/-1; background:#4338ca; justify-content:center; padding: 9px;">
                         <i class="fa-solid fa-floppy-disk"></i> ගාස්තු සහ Discounts Update කරන්න
@@ -791,7 +795,7 @@
                 </div>
             </div>
 
-            <!-- Section 2: Add Auto-play Ad Banner -->
+            <!-- Add Auto-play Ad Banner -->
             <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
                 <h4 style="color: #92400e; font-size: 0.95rem; margin-bottom: 8px;"><i class="fa-solid fa-rectangle-ad"></i> Auto-Play Ads එකට Banner එකක් එක් කරන්න:</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -807,7 +811,24 @@
                 </div>
             </div>
 
-            <!-- Section 3: Add Product Directly -->
+            <!-- Manage Active Ads Table (Delete Option) -->
+            <div style="background: #fff; border: 1px solid #fed7aa; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                <h4 style="color: #c2410c; font-size: 0.9rem; margin-bottom: 6px;"><i class="fa-solid fa-trash-can"></i> දැනට Play වන දැන්වීම් අයින් කරන්න (Manage Ads):</h4>
+                <div style="max-height: 150px; overflow-y: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>දැන්වීමේ නම</th>
+                                <th>දුරකථනය</th>
+                                <th>අයින් කරන්න</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminAdsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Add Product Directly -->
             <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
                 <h4 style="color: var(--primary-green); font-size: 0.95rem; margin-bottom: 8px;"><i class="fa-solid fa-box"></i> සෘජුවම නව භාණ්ඩයක් පළ කරන්න:</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -831,8 +852,8 @@
                 </div>
             </div>
 
-            <!-- Manage Active Products -->
-            <h4 style="font-size: 0.9rem; margin-bottom: 6px;">දැනට ඇති භාණ්ඩ ලැයිස්තුව:</h4>
+            <!-- Manage Active Products Table -->
+            <h4 style="font-size: 0.9rem; margin-bottom: 6px;">දැනට ඇති භාණ්ඩ අයින් කරන්න (Manage Products):</h4>
             <div style="max-height: 180px; overflow-y: auto;">
                 <table class="admin-table">
                     <thead>
@@ -854,12 +875,12 @@
         const ADMIN_WHATSAPP = "94784693750";
         const ADMIN_PASS = "admin123";
 
-        // Dynamic System Settings (Editable via Admin Panel)
+        // Dynamic System Settings
         let defaultSettings = {
             regFee: 1500,
             adFee: 1000,
-            discount2: 15, // 2 items = 15% off
-            discount3: 25, // 3+ items = 25% off
+            discount2: 15,
+            discount3: 25,
             announcement: "විශේෂ දීමනාව: භාණ්ඩ 2කට 15% ක සහ 3කට 25% ක විශේෂ වට්ටමක් හිමිවේ!"
         };
 
@@ -904,7 +925,6 @@
         let products = JSON.parse(localStorage.getItem('edo_products')) || defaultProducts;
         let currentCategory = "All";
 
-        // Convert File to Base64 String
         function fileToBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -914,7 +934,6 @@
             });
         }
 
-        // Apply Live Settings into UI
         function updateUIWithSettings() {
             document.getElementById('heroRegFee').innerText = `රු. ${settings.regFee}`;
             document.getElementById('modalRegFeeDisplay').innerText = `රු. ${settings.regFee}/=`;
@@ -924,7 +943,6 @@
             updatePricePreview();
         }
 
-        // 10% Margin Calculation
         function calculateFinalPrice(basePrice) {
             const commission = basePrice * 0.10;
             return {
@@ -934,34 +952,35 @@
             };
         }
 
-        // Calculate Registration Fee with Multi-Item Discount
         function calculateRegFee(qty) {
             let baseTotal = settings.regFee * qty;
             let discountPercent = 0;
-
-            if (qty === 2) {
-                discountPercent = settings.discount2 || 0;
-            } else if (qty >= 3) {
-                discountPercent = settings.discount3 || 0;
-            }
+            if (qty === 2) discountPercent = settings.discount2 || 0;
+            else if (qty >= 3) discountPercent = settings.discount3 || 0;
 
             let discountAmount = Math.round((baseTotal * discountPercent) / 100);
-            let finalRegTotal = baseTotal - discountAmount;
-
             return {
                 qty: qty,
                 baseTotal: baseTotal,
                 discountPercent: discountPercent,
                 discountAmount: discountAmount,
-                finalRegTotal: finalRegTotal
+                finalRegTotal: baseTotal - discountAmount
             };
         }
 
         // Auto Slider Runner
         let currentAdIdx = 0;
+        let adInterval = null;
+
         function initAdSlider() {
             const sliderBox = document.getElementById("adSliderBox");
             sliderBox.querySelectorAll('.ad-slide').forEach(s => s.remove());
+
+            if (ads.length === 0) {
+                document.getElementById('adTitleText').innerText = "දැන්වීම් පළකිරීමට විමසන්න";
+                document.getElementById('adPhoneText').innerHTML = `<i class="fa-brands fa-whatsapp"></i> 0784693750`;
+                return;
+            }
 
             ads.forEach((ad, idx) => {
                 const slide = document.createElement('div');
@@ -970,12 +989,11 @@
                 sliderBox.prepend(slide);
             });
 
-            if (ads.length > 0) {
-                document.getElementById('adTitleText').innerText = ads[0].title;
-                document.getElementById('adPhoneText').innerHTML = `<i class="fa-brands fa-whatsapp"></i> ${ads[0].phone}`;
-            }
+            document.getElementById('adTitleText').innerText = ads[0].title;
+            document.getElementById('adPhoneText').innerHTML = `<i class="fa-brands fa-whatsapp"></i> ${ads[0].phone}`;
 
-            setInterval(() => {
+            if (adInterval) clearInterval(adInterval);
+            adInterval = setInterval(() => {
                 const slides = document.querySelectorAll('.ad-slide');
                 if (slides.length > 1) {
                     slides[currentAdIdx].classList.remove('active');
@@ -1061,11 +1079,9 @@
             renderProducts();
         }
 
-        // Modal Controls
         function openModal(id) { document.getElementById(id).style.display = "block"; }
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
 
-        // Live Preview of Price and Registration Fee Discount
         function updatePricePreview() {
             const p = parseFloat(document.getElementById("upPrice").value) || 0;
             const qty = parseInt(document.getElementById("upItemQty").value) || 1;
@@ -1088,7 +1104,6 @@
             `;
         }
 
-        // User Product Submission via WhatsApp
         function handleUserProdSubmit(e) {
             e.preventDefault();
             const seller = document.getElementById("upSeller").value;
@@ -1119,7 +1134,6 @@
             document.getElementById("userProdForm").reset();
         }
 
-        // User Ad Banner Submission via WhatsApp
         function handleUserAdSubmit(e) {
             e.preventDefault();
             const name = document.getElementById("uaName").value;
@@ -1141,11 +1155,9 @@
             document.getElementById("userAdForm").reset();
         }
 
-        // Admin Security & Open
         function checkAdminLogin() {
             const pass = prompt("Admin මුරපදය (Password) ඇතුළත් කරන්න:");
             if (pass === ADMIN_PASS) {
-                // Populate current settings into Admin inputs
                 document.getElementById('admRegFeeInput').value = settings.regFee;
                 document.getElementById('admAdFeeInput').value = settings.adFee;
                 document.getElementById('admDiscount2Input').value = settings.discount2 || 0;
@@ -1153,13 +1165,13 @@
                 document.getElementById('admAnnouncementInput').value = settings.announcement;
 
                 renderAdminTable();
+                renderAdminAdsTable(); // Render Ads Delete Table
                 openModal('adminModal');
             } else if (pass !== null) {
                 alert("මුරපදය වැරදියි!");
             }
         }
 
-        // Admin: Save Rates & Discounts
         function adminSaveSettings() {
             const regFee = parseFloat(document.getElementById('admRegFeeInput').value);
             const adFee = parseFloat(document.getElementById('admAdFeeInput').value);
@@ -1185,6 +1197,33 @@
             alert("ගාස්තු සහ Discounts සාර්ථකව Update විය!");
         }
 
+        // Render Manage Ads Table (Delete Option)
+        function renderAdminAdsTable() {
+            const tbody = document.getElementById("adminAdsTableBody");
+            if (ads.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;color:#888;">කිසිදු දැන්වීමක් නොමැත.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = ads.map((item, idx) => `
+                <tr>
+                    <td>${item.title}</td>
+                    <td>${item.phone}</td>
+                    <td><button onclick="adminDeleteAd(${idx})" class="btn-del"><i class="fa-solid fa-trash"></i> Delete</button></td>
+                </tr>
+            `).join('');
+        }
+
+        // Delete Ad Function
+        function adminDeleteAd(idx) {
+            if (confirm("මෙම දැන්වීම ඉවත් කිරීමට ඔබට සහතිකද?")) {
+                ads.splice(idx, 1);
+                localStorage.setItem('edo_ads', JSON.stringify(ads));
+                initAdSlider();
+                renderAdminAdsTable();
+                alert("දැන්වීම සාර්ථකව ඉවත් කරන ලදී!");
+            }
+        }
+
         function renderAdminTable() {
             const tbody = document.getElementById("adminTableBody");
             tbody.innerHTML = products.map((item, idx) => `
@@ -1192,12 +1231,11 @@
                     <td>${item.title}</td>
                     <td>${item.category}</td>
                     <td>Rs. ${item.basePrice}</td>
-                    <td><button onclick="adminDeleteProduct(${idx})" class="btn-del">Delete</button></td>
+                    <td><button onclick="adminDeleteProduct(${idx})" class="btn-del"><i class="fa-solid fa-trash"></i> Delete</button></td>
                 </tr>
             `).join('');
         }
 
-        // Admin: Publish Ad Banner from Gallery
         async function adminPublishAd() {
             const title = document.getElementById("adAdminTitle").value;
             const phone = document.getElementById("adAdminPhone").value;
@@ -1217,13 +1255,13 @@
 
             localStorage.setItem('edo_ads', JSON.stringify(ads));
             initAdSlider();
+            renderAdminAdsTable();
             alert("දැන්වීම සාර්ථකව උඩින් Auto-Play වීමට එක් කරන ලදී!");
             document.getElementById("adAdminTitle").value = '';
             document.getElementById("adAdminPhone").value = '';
             document.getElementById("adAdminFile").value = '';
         }
 
-        // Admin: Publish Product from Gallery
         async function adminPublishProduct() {
             const title = document.getElementById("admPTitle").value;
             const seller = document.getElementById("admPSeller").value;
