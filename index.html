@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDO Entrepreneur - දේශීය අභිමානය හා ස්වයං රැකියා වෙළඳපොළ</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-green: #1b5e20;
+            --secondary-green: #2e7d32;
+            --accent-green: #4caf50;
+            --light-green: #e8f5e9;
+            --gold: #ffb300;
+            --dark: #1c2826;
+            --white: #ffffff;
+            --gray-bg: #f5f9f6;
+            --border-color: #c8e6c9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Gemunu Libre', sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar a {
+            color: #bbf7d0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 2px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(27, 94, 32, 0.08);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+            color: var(--white);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .logo-title h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary-green);
+            line-height: 1.1;
+        }
+
+        .logo-title span {
+            font-size: 0.78rem;
+            color: var(--secondary-green);
+            font-weight: 600;
+            display: block;
+        }
+
+        .header-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-reg {
+            background: var(--secondary-green);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+
+        .btn-reg:hover {
+            background: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(27, 94, 32, 0.85), rgba(46, 125, 50, 0.9)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            max-width: 750px;
+            margin: auto;
+            color: #e8f5e9;
+        }
+
+        .hero-badges {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .badge-pill {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        /* Section Titles */
+        .sec-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .sec-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Categories Bar */
+        .categories-wrapper {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .cat-btn {
+            background: var(--white);
+            border: 1.5px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--primary-green);
+            color: var(--white);
+            border-color: var(--primary-green);
+        }
+
+        /* Product Cards Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 18px rgba(27, 94, 32, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .card-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-cat {
+            font-size: 0.75rem;
+            color: var(--secondary-green);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 4px 0 6px;
+        }
+
+        .card-seller {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .price-breakdown {
+            background: var(--light-green);
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin: 8px 0 12px;
+            font-size: 0.82rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            color: #374151;
+        }
+
+        .price-total {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            border-top: 1px dashed #a5d6a7;
+            padding-top: 4px;
+            margin-top: 4px;
+        }
+
+        .btn-order {
+            margin-top: auto;
+            background: #25d366;
+            color: var(--white);
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn-order:hover {
+            background: #1eb854;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--white);
+            max-width: 550px;
+            margin: 30px auto;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--secondary-green);
+        }
+
+        .calc-preview {
+            background: var(--light-green);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 40px 20px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: #bbf7d0;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #d1fae5;
+            font-size: 0.88rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 15px;
+            font-size: 0.82rem;
+            color: #a7f3d0;
+        }
+
+        /* Floating WhatsApp Button */
+        .float-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: var(--white);
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <span><i class="fa-solid fa-leaf"></i> අපේ දේ අගයමු - දේශීය ව්‍යවසායකයින් නංවාලමු</span>
+        <a href="https://wa.me/94784693750" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp: 078 469 3750
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="https://www.edoentrepreneur.lk" class="logo-area">
+                <div class="logo-badge">E</div>
+                <div class="logo-title">
+                    <h1>EDO Entrepreneur</h1>
+                    <span>edoentrepreneur.lk</span>
+                </div>
+            </a>
+            <div class="header-btns">
+                <button class="btn-reg" onclick="openModal()">
+                    <i class="fa-solid fa-plus-circle"></i> භාණ්ඩ ලියාපදිංචි කරන්න
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h2>දේශීය ස්වයං රැකියා හා නිෂ්පාදන වෙළඳපොළ</h2>
+        <p>ඔබ නිවසේදීම සාදන ඕනෑම ස්වයං රැකියා නිෂ්පාදනයක් අදම අපගේ වෙදිකාවේ ලියාපදිංචි කර දිවයින පුරා පාරිභෝගිකයන් වෙත පහසුවෙන්ම අලෙවි කරන්න.</p>
+        <div class="hero-badges">
+            <div class="badge-pill"><i class="fa-solid fa-check"></i> ලියාපදිංචි ගාස්තුව: රු. 250 පමණි</div>
+            <div class="badge-pill"><i class="fa-solid fa-percent"></i> 10% සහනදායී සේවා ගාස්තුවක් පමණයි</div>
+            <div class="badge-pill"><i class="fa-brands fa-whatsapp"></i> WhatsApp සෘජු ඇණවුම්</div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <!-- Categories Bar -->
+        <div class="sec-header">
+            <div class="sec-title"><i class="fa-solid fa-boxes-stacked"></i> නිෂ්පාදන කාණ්ඩ</div>
+        </div>
+
+        <div class="categories-wrapper">
+            <button class="cat-btn active" onclick="filterCategory('All', this)">සියල්ල (All)</button>
+            <button class="cat-btn" onclick="filterCategory('ආහාර හා පාන', this)">ආහාර හා පාන (Food)</button>
+            <button class="cat-btn" onclick="filterCategory('අත්කම් නිර්මාණ', this)">අත්කම් නිර්මාණ (Crafts)</button>
+            <button class="cat-btn" onclick="filterCategory('කාබනික හා පැළෑටි', this)">කාබනික නිෂ්පාදන (Organic)</button>
+            <button class="cat-btn" onclick="filterCategory('ඇඳුම් හා රෙදිපිළි', this)">ඇඳුම් නිර්මාණ (Textiles)</button>
+            <button class="cat-btn" onclick="filterCategory('ගෘහස්ත නිෂ්පාදන', this)">ගෘහස්ත භාණ්ඩ (Home Needs)</button>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="sec-header">
+            <div class="sec-title"><i class="fa-solid fa-store"></i> ලබාගත හැකි නිෂ්පාදන</div>
+        </div>
+
+        <div class="products-grid" id="productGrid">
+            <!-- Dynamic Cards Loaded from JS -->
+        </div>
+    </main>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/94784693750?text=Hello%20EDO%20Entrepreneur,%20මට%20විස්තර%20දැනගැනීමට%20අවශ්‍යයි." target="_blank" class="float-wa" title="WhatsApp මඟින් සම්බන්ධ වන්න">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Seller Registration Modal -->
+    <div class="modal" id="regModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3 style="color: var(--primary-green); margin-bottom: 8px;">
+                <i class="fa-solid fa-file-circle-plus"></i> ඔබේ භාණ්ඩය ලියාපදිංචි කරන්න
+            </h3>
+            <p style="font-size: 0.85rem; color: #555; margin-bottom: 16px;">
+                නිෂ්පාදනය වෙබ් අඩවියට එකතු කිරීමට ලියාපදිංචි ගාස්තුව ලෙස <b>රු. 250/=</b> ක් අය කෙරේ. විකුණන සෑම ඒකකයකින්ම 10% ක කොමිස් මුදලක් එකතු වේ.
+            </p>
+
+            <form id="productForm" onsubmit="handleProductSubmit(event)">
+                <div class="form-group">
+                    <label>නිෂ්පාදකයාගේ නම (Seller Name):</label>
+                    <input type="text" id="sellerName" required placeholder="උදා: සුරංග (Kuruwita)">
+                </div>
+
+                <div class="form-group">
+                    <label>දුරකථන / WhatsApp අංකය:</label>
+                    <input type="tel" id="sellerPhone" required placeholder="07xxxxxxxx">
+                </div>
+
+                <div class="form-group">
+                    <label>භාණ්ඩයේ නම (Product Name):</label>
+                    <input type="text" id="prodName" required placeholder="උදා: ස්වභාවික පොල් කටු හැඳි කට්ටලය">
+                </div>
+
+                <div class="form-group">
+                    <label>කාණ්ඩය (Category):</label>
+                    <select id="prodCategory" required>
+                        <option value="ආහාර හා පාන">ආහාර හා පාන</option>
+                        <option value="අත්කම් නිර්මාණ">අත්කම් නිර්මාණ</option>
+                        <option value="කාබනික හා පැළෑටි">කාබනික හා පැළෑටි</option>
+                        <option value="ඇඳුම් හා රෙදිපිළි">ඇඳුම් හා රෙදිපිළි</option>
+                        <option value="ගෘහස්ත නිෂ්පාදන">ගෘහස්ත නිෂ්පාදන</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>ඔබ බලාපොරොත්තු වන මිල (Seller Price - Rs.):</label>
+                    <input type="number" id="prodBasePrice" required placeholder="උදා: 1000" oninput="updateModalPreview()">
+                </div>
+
+                <div class="calc-preview" id="calcPreview">
+                    <div>නිෂ්පාදකයාගේ මිල: <b>රු. 0.00</b></div>
+                    <div>අපගේ සේවා ගාස්තුව (10%): <b>රු. 0.00</b></div>
+                    <div style="font-weight: 700; color: var(--primary-green); margin-top: 4px;">
+                        පාරිභෝගිකයාට පෙන්වන අවසන් මිල: රු. 0.00
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>පින්තූරයක Link එකක් (Image URL):</label>
+                    <input type="url" id="prodImg" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=500&q=80">
+                </div>
+
+                <button type="submit" class="btn-reg" style="width: 100%; justify-content: center; padding: 12px; font-size: 1rem;">
+                    <i class="fa-brands fa-whatsapp"></i> ලියාපදිංචි කර WhatsApp වෙත යවන්න
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>EDO Entrepreneur</h4>
+                <p>ස්වයං රැකියා හා ක්ෂුද්‍ර පරිමාණ දේශීය නිෂ්පාදකයන් දිරිමත් කර ඔවුන්ගේ නිපැයුම් පාරිභෝගිකයන් අතරට ගෙනයන විශ්වාසවන්ත ඩිජිටල් වෙළෙඳපොළ.</p>
+            </div>
+            <div class="footer-col">
+                <h4>අප හා සම්බන්ධ වන්න</h4>
+                <p><i class="fa-brands fa-whatsapp"></i> 078 469 3750</p>
+                <p><i class="fa-solid fa-globe"></i> www.edoentrepreneur.lk</p>
+                <p><i class="fa-solid fa-location-dot"></i> ශ්‍රී ලංකාව</p>
+            </div>
+            <div class="footer-col">
+                <h4>ගාස්තු ප්‍රතිපත්තිය</h4>
+                <p>• භාණ්ඩ ලියාපදිංචි ගාස්තුව: රු. 250/=</p>
+                <p>• සාර්ථක අලෙවියකදී සේවා ගාස්තුව: 10% පමණි</p>
+                <p>• පාරිභෝගික විශ්වාසය හා ආරක්ෂිත ගෙවීම්</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 EDO Entrepreneur (edoentrepreneur.lk). සියලුම හිමිකම් ඇවිරිණි.
+        </div>
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        const ADMIN_WHATSAPP = "94784693750";
+        const REGISTRATION_FEE = 250;
+
+        // මූලික නිෂ්පාදන ලැයිස්තුව
+        let products = [
+            {
+                id: 1,
+                title: "ස්වභාවික කොළපත් පිඟන් (10 pcs)",
+                category: "අත්කම් නිර්මාණ",
+                seller: "සුරංග (කුරුවිට)",
+                basePrice: 500,
+                image: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 2,
+                title: "පිරිසිදු කිතුල් පැණි බෝතලය (750ml)",
+                category: "ආහාර හා පාන",
+                seller: "සමන් කුමාර",
+                basePrice: 1600,
+                image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 3,
+                title: "අතින් නිමවූ උණබම්බු මල් පෝච්චි",
+                category: "අත්කම් නිර්මාණ",
+                seller: "නිර්මාණි හස්ත කර්මාන්ත",
+                basePrice: 850,
+                image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 4,
+                title: "කාබනික කොම්පෝස්ට් පොහොර (5kg)",
+                category: "කාබනික හා පැළෑටි",
+                seller: "ග්‍රීන් ෆාම්",
+                basePrice: 450,
+                image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        let currentCategory = "All";
+
+        // 10% කොමිස් සහිත අවසන් මිල ගණනය
+        function calculateFinalPrice(basePrice) {
+            const commission = basePrice * 0.10;
+            const finalPrice = Math.round(basePrice + commission);
+            return {
+                basePrice: basePrice,
+                commission: Math.round(commission),
+                finalPrice: finalPrice
+            };
+        }
+
+        // Render Products
+        function renderProducts() {
+            const grid = document.getElementById("productGrid");
+            const filtered = currentCategory === "All" 
+                ? products 
+                : products.filter(p => p.category === currentCategory);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #777; padding: 30px;">මෙම කාණ්ඩය යටතේ නිෂ්පාදන තවමත් ඇතුළත් කර නොමැත.</p>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => {
+                const calc = calculateFinalPrice(item.basePrice);
+                
+                // WhatsApp Order Message
+                const msg = encodeURIComponent(
+                    `*EDO Entrepreneur ඇණවුම:*\n` +
+                    `• භාණ්ඩය: ${item.title}\n` +
+                    `• නිෂ්පාදකයා: ${item.seller}\n` +
+                    `• අවසන් මිල: රු. ${calc.finalPrice}/=\n` +
+                    `• (සේවා ගාස්තු 10% ඇතුළත්ව)\n\n` +
+                    `මට මෙම භාණ්ඩය ඇණවුම් කිරීමට අවශ්‍යයි.`
+                );
+
+                return `
+                    <div class="card">
+                        <img src="${item.image}" alt="${item.title}" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=500&q=80'">
+                        <div class="card-body">
+                            <span class="card-cat">${item.category}</span>
+                            <h3 class="card-title">${item.title}</h3>
+                            <div class="card-seller"><i class="fa-solid fa-user-tag"></i> නිෂ්පාදකයා: ${item.seller}</div>
+                            
+                            <div class="price-breakdown">
+                                <div class="price-row">
+                                    <span>නියම මිල:</span>
+                                    <span>රු. ${calc.basePrice.toLocaleString()}</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>සේවා ගාස්තුව (10%):</span>
+                                    <span>+ රු. ${calc.commission.toLocaleString()}</span>
+                                </div>
+                                <div class="price-row price-total">
+                                    <span>විකුණුම් මිල:</span>
+                                    <span>රු. ${calc.finalPrice.toLocaleString()}/=</span>
+                                </div>
+                            </div>
+
+                            <a href="https://wa.me/${ADMIN_WHATSAPP}?text=${msg}" target="_blank" class="btn-order">
+                                <i class="fa-brands fa-whatsapp"></i> දැන්ම මිලදී ගන්න
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Category Filter
+        function filterCategory(cat, btn) {
+            currentCategory = cat;
+            document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderProducts();
+        }
+
+        // Modal Open / Close
+        function openModal() {
+            document.getElementById("regModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("regModal").style.display = "none";
+        }
+
+        // Modal Calculation Preview
+        function updateModalPreview() {
+            const base = parseFloat(document.getElementById("prodBasePrice").value) || 0;
+            const calc = calculateFinalPrice(base);
+            document.getElementById("calcPreview").innerHTML = `
+                <div>නිෂ්පාදකයාගේ මිල: <b>රු. ${calc.basePrice.toLocaleString()}</b></div>
+                <div>අපගේ සේවා ගාස්තුව (10%): <b>රු. ${calc.commission.toLocaleString()}</b></div>
+                <div style="font-weight: 700; color: var(--primary-green); margin-top: 4px;">
+                    පාරිභෝගිකයාට පෙන්වන අවසන් මිල: රු. ${calc.finalPrice.toLocaleString()}/=
+                </div>
+            `;
+        }
+
+        // Handle Product Submission & Direct to WhatsApp for Rs. 250 Registration Fee
+        function handleProductSubmit(e) {
+            e.preventDefault();
+
+            const sellerName = document.getElementById("sellerName").value;
+            const sellerPhone = document.getElementById("sellerPhone").value;
+            const prodName = document.getElementById("prodName").value;
+            const prodCategory = document.getElementById("prodCategory").value;
+            const basePrice = parseFloat(document.getElementById("prodBasePrice").value);
+            const prodImg = document.getElementById("prodImg").value;
+
+            const calc = calculateFinalPrice(basePrice);
+
+            // Add new product locally
+            const newProduct = {
+                id: Date.now(),
+                title: prodName,
+                category: prodCategory,
+                seller: sellerName,
+                basePrice: basePrice,
+                image: prodImg
+            };
+
+            products.unshift(newProduct);
+            renderProducts();
+            closeModal();
+
+            // WhatsApp Notification for Product Registration + Registration Fee
+            const regMsg = encodeURIComponent(
+                `*EDO Entrepreneur නව භාණ්ඩ ලියාපදිංචිය*\n\n` +
+                `• නිෂ්පාදකයාගේ නම: ${sellerName}\n` +
+                `• දුරකථන අංකය: ${sellerPhone}\n` +
+                `• භාණ්ඩයේ නම: ${prodName}\n` +
+                `• කාණ්ඩය: ${prodCategory}\n` +
+                `• ඉල්ලා සිටින මිල: රු. ${basePrice}/=\n` +
+                `• 10% එකතු කළ අවසන් විකුණුම් මිල: රු. ${calc.finalPrice}/=\n\n` +
+                `• *ලියාපදිංචි ගාස්තුව: රු. ${REGISTRATION_FEE}/=* ගෙවීමට අදාළ බැංකු විස්තර ලබා දෙන්න.`
+            );
+
+            // Open WhatsApp to notify Admin
+            window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${regMsg}`, '_blank');
+
+            alert("ඔබගේ භාණ්ඩය සාර්ථකව වෙබ් අඩවියට එකතු විය! ලියාපදිංචි ගාස්තුව (රු. 250) තහවුරු කිරීමට WhatsApp විවෘත වේ.");
+            document.getElementById("productForm").reset();
+            updateModalPreview();
+        }
+
+        // Initial Load
+        renderProducts();
+
+        // Close modal on click outside
+        window.onclick = function(event) {
+            const modal = document.getElementById("regModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
