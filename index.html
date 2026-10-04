@@ -4,201 +4,474 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>EDO App - Smart Food & Stores</title>
-  <meta name="theme-color" content="#10b981">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- PWA Settings -->
+  <meta name="theme-color" content="#10b981">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- FontAwesome & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --primary: #10b981;
       --primary-dark: #059669;
-      --dark: #1e293b;
+      --accent: #f59e0b;
+      --dark: #0f172a;
       --light: #f8fafc;
       --white: #ffffff;
       --gray: #64748b;
+      --border: #e2e8f0;
       --red: #ef4444;
-      --yellow: #f59e0b;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: var(--light); color: var(--dark); padding-bottom: 75px; }
-    
-    header { 
-      background: var(--primary); 
-      color: var(--white); 
-      padding: 12px 16px; 
-      position: sticky; 
-      top: 0; 
-      z-index: 100; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: #f1f5f9; color: var(--dark); padding-bottom: 80px; }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: var(--white);
+      padding: 12px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
     }
-    .logo-area { display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 1.2rem; }
-    
-    .nav-tabs { 
-      display: flex; 
-      background: var(--white); 
-      border-bottom: 1px solid #e2e8f0; 
-      position: sticky; 
-      top: 56px; 
-      z-index: 99; 
-      overflow-x: auto; 
+    .header-logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.25rem; }
+    .header-actions { display: flex; align-items: center; gap: 8px; }
+
+    /* App Download / Install Button */
+    .btn-download-app {
+      background: var(--white);
+      color: var(--primary-dark);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      animation: pulse 2s infinite;
     }
-    .tab-btn { 
-      flex: 1; 
-      min-width: 70px; 
-      text-align: center; 
-      padding: 12px 4px; 
-      font-size: 0.85rem; 
-      font-weight: 600; 
-      color: var(--gray); 
-      border: none; 
-      background: none; 
-      cursor: pointer; 
-      border-bottom: 3px solid transparent; 
-      white-space: nowrap; 
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
     }
-    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-    
-    .page-section { display: none; padding: 16px; }
+
+    /* Dynamic Banner Slider / Area */
+    .banner-container { margin: 12px 16px; overflow: hidden; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); background: #000; }
+    .banner-img { width: 100%; height: 160px; object-fit: cover; display: block; }
+
+    /* Navigation Sections */
+    .page-section { display: none; padding: 0 16px 16px 16px; }
     .page-section.active { display: block; }
-    
-    /* Grid & Cards */
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
-    .card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-    .card img { width: 100%; height: 130px; object-fit: cover; }
-    .card-body { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .card-title { font-size: 0.95rem; font-weight: bold; margin-bottom: 4px; }
-    .card-price { color: var(--primary-dark); font-weight: bold; font-size: 1rem; margin-bottom: 8px; }
-    .btn-order { background: var(--primary); color: #fff; border: none; padding: 6px 10px; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+    .section-title { margin: 16px 0 10px 0; font-size: 1rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+
+    /* Product Grid */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .item-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .item-card img { width: 100%; height: 130px; object-fit: cover; }
+    .item-card-body { padding: 10px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .item-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; line-height: 1.2; }
+    .item-price { color: var(--primary-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .btn-buy-whatsapp {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+    }
 
     /* Video Reel Section */
-    .reel-container { display: flex; flex-direction: column; gap: 16px; max-width: 480px; margin: 0 auto; }
-    .reel-card { background: #000; border-radius: 16px; overflow: hidden; position: relative; height: 480px; display: flex; align-items: center; justify-content: center; }
+    .reel-container { display: flex; flex-direction: column; gap: 16px; max-width: 440px; margin: 0 auto; }
+    .reel-card { background: #000; border-radius: 18px; overflow: hidden; position: relative; height: 480px; display: flex; align-items: center; justify-content: center; }
     .reel-card video { width: 100%; height: 100%; object-fit: cover; }
-    .reel-info { position: absolute; bottom: 14px; left: 14px; right: 14px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+    .reel-card-info { position: absolute; bottom: 16px; left: 16px; right: 16px; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,0.8); }
 
-    /* Feedback Styles */
-    .feedback-box { background: var(--white); padding: 16px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .star-rating { display: flex; gap: 6px; font-size: 1.4rem; color: #cbd5e1; cursor: pointer; margin: 8px 0; }
-    .star-rating .fa-star.active { color: var(--yellow); }
-    .feedback-item { background: var(--white); padding: 12px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary); box-shadow: 0 1px 4px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: flex-start; }
-    .feedback-user { font-weight: bold; font-size: 0.9rem; }
-    .feedback-text { font-size: 0.85rem; color: var(--gray); margin-top: 4px; }
-    .del-btn { color: var(--red); background: none; border: none; cursor: pointer; font-size: 0.9rem; padding: 4px; }
+    /* Feedbacks Section */
+    .fb-form { background: var(--white); border-radius: 14px; padding: 16px; border: 1px solid var(--border); margin-bottom: 16px; }
+    .stars-picker { display: flex; gap: 8px; font-size: 1.5rem; color: #cbd5e1; cursor: pointer; margin: 10px 0; }
+    .stars-picker .fa-star.active { color: var(--accent); }
+    .fb-input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; outline: none; }
+    .fb-input:focus { border-color: var(--primary); }
+    .fb-item { background: var(--white); padding: 12px; border-radius: 12px; border-left: 4px solid var(--primary); margin-bottom: 10px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .fb-user { font-weight: 700; font-size: 0.85rem; }
+    .fb-msg { font-size: 0.8rem; color: var(--gray); margin-top: 4px; }
+    .btn-trash { color: var(--red); background: none; border: none; cursor: pointer; font-size: 1rem; padding: 6px; }
 
     /* Admin Styles */
-    .admin-card { background: var(--white); padding: 16px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    input, textarea, select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 10px; outline: none; font-size: 0.9rem; }
-    input:focus, textarea:focus { border-color: var(--primary); }
-    .btn-action { width: 100%; background: var(--primary); color: #fff; padding: 10px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.95rem; }
+    .admin-box { background: var(--white); padding: 16px; border-radius: 14px; border: 1px solid var(--border); margin-bottom: 16px; }
+    .admin-label { font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; display: block; color: var(--dark); }
+    .btn-save-admin { background: var(--primary); color: #fff; border: none; padding: 10px; border-radius: 8px; width: 100%; font-weight: 700; cursor: pointer; }
 
     /* Bottom Navigation */
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); height: 60px; display: flex; border-top: 1px solid #e2e8f0; z-index: 100; }
-    .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--gray); text-decoration: none; font-size: 0.75rem; border: none; background: none; }
-    .nav-item.active { color: var(--primary); font-weight: bold; }
-    .nav-item i { font-size: 1.2rem; margin-bottom: 3px; }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65px;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    .b-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      gap: 3px;
+    }
+    .b-nav-item i { font-size: 1.2rem; }
+    .b-nav-item.active { color: var(--primary); font-weight: 700; }
   </style>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase Compat Scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
+  <!-- Header with Download Button -->
   <header>
-    <div class="logo-area">
+    <div class="header-logo">
       <i class="fa-solid fa-leaf"></i>
       <span>EDO App</span>
     </div>
-    <span style="font-size: 0.75rem; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 12px;">Live Online</span>
+    <div class="header-actions">
+      <button class="btn-download-app" id="btnInstallApp" onclick="triggerInstallApp()">
+        <i class="fa-solid fa-download"></i> App Download
+      </button>
+      <span style="font-size: 0.75rem; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 12px;">Live</span>
+    </div>
   </header>
 
+  <!-- 1. HOME SECTION -->
+  <section id="sec-home" class="page-section active">
+    <!-- Dynamic Banner from Firebase -->
+    <div class="banner-container" id="banner-wrapper">
+      <img id="main-banner-img" class="banner-img" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800" alt="EDO Special Banner">
+    </div>
+
+    <div class="section-title">
+      <span>විශේෂ දීමනා සහ නිෂ්පාදන</span>
+      <span style="font-size: 0.75rem; color: var(--primary);">Live Stock</span>
+    </div>
+
+    <!-- Live Products Loaded from Firestore -->
+    <div class="grid-2" id="live-products-grid">
+      <!-- Products auto load here -->
+    </div>
+  </section>
+
+  <!-- 2. FOOD SECTION -->
+  <section id="sec-food" class="page-section">
+    <div class="section-title">
+      <span>EDO හෙළ බොජුන් (ආහාර)</span>
+    </div>
+    <div class="grid-2" id="live-food-grid">
+      <!-- Food Items auto load here -->
+    </div>
+  </section>
+
+  <!-- 3. STORES SECTION -->
+  <section id="sec-stores" class="page-section">
+    <div class="section-title">
+      <span>ලියාපදිංචි වෙළඳසැල් (Stores)</span>
+    </div>
+    <div class="grid-2" id="live-stores-grid">
+      <!-- Stores auto load here -->
+    </div>
+  </section>
+
+  <!-- 4. VIDEOS SECTION -->
+  <section id="sec-videos" class="page-section">
+    <div class="section-title">
+      <span style="color: var(--primary);"><i class="fa-solid fa-play"></i> EDO Videos & Reels</span>
+    </div>
+    <div class="reel-container">
+      <div class="reel-card">
+        <video src="https://assets.mixkit.co/videos/preview/mixkit-hands-holding-fresh-vegetables-40436-large.mp4" controls loop playsinline></video>
+        <div class="reel-card-info">
+          <h4>නැවුම් එළවළු සහ දේශීය රස</h4>
+          <p>සෘජුවම කුරුවිට අපගේ ගොවිපළෙන්ම ඔබේ නිවසටම</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FEEDBACKS SECTION -->
+  <section id="sec-feedbacks" class="page-section">
+    <div class="fb-form">
+      <h3>ඔබගේ වටිනා අදහස (Feedback)</h3>
+      <p style="font-size: 0.8rem; color: var(--gray); margin-bottom: 8px;">අපගේ සේවාව පිළිබඳ ඔබේ අදහස සටහන් කරන්න.</p>
+      
+      <input type="text" id="fbUserName" class="fb-input" placeholder="ඔබගේ නම">
+      <textarea id="fbUserMsg" rows="3" class="fb-input" placeholder="ඔබේ අදහස මෙහි ලියන්න..."></textarea>
+      
+      <div style="font-size: 0.8rem; font-weight: 600;">තරු අගය කිරීම (Rating):</div>
+      <div class="stars-picker" id="starPicker">
+        <i class="fa-solid fa-star active" data-val="1"></i>
+        <i class="fa-solid fa-star active" data-val="2"></i>
+        <i class="fa-solid fa-star active" data-val="3"></i>
+        <i class="fa-solid fa-star active" data-val="ඔබගේ EDO යෙදුම සඳහා කලින් තිබූ සියලුම අංග (Admin Panel, Banner & Product Upload, Firebase Database සම්බන්ධතාවය) ආරක්ෂා කරගනිමින්, අලුතින් ඉල්ලූ සියලුම අංග එකතු කළ සම්පූර්ණ `index.html` ගොනුව පහත දැක්වේ.
+
+---
+
+### මෙහි අඩංගු ප්‍රධාන අංග:
+1. **App Download / Install Button:** තිරයේ ඉහළ දකුණු පසින් දිස්වන කොළ පැහැති ආකර්ෂණීය බොත්තම මඟින් PWA තාක්ෂණය හරහා දුරකථනයට හෝ පරිගණකයට එක්වරම යෙදුම ස්ථාපනය කරගත හැක (`beforeinstallprompt` මඟින් සක්‍රීය වේ).
+2. **පෙර පැවති සියලු Admin Features:** බැනර් සහ භාණ්ඩ සජීවීව Firestore වෙත එක්කිරීමේ සහ බැලීමේ ක්‍රමවේද එලෙසම පවතී.
+3. **Customer Feedback & Ratings:** තරු 1 සිට 5 දක්වා ලකුණු සමඟ අදහස් Firestore හි `feedbacks` එකතුවට සජීවීව තැන්පත් වේ.
+4. **Admin Feedback Manager:** ලැබුණු අදහස් පරීක්ෂා කර අනවශ්‍ය දේ තනි ක්ලික් එකකින් මකා දැමීමේ (Delete) හැකියාව.
+5. **Dual WhatsApp Routing & Number Settings:** ප්‍රධාන අංකය සහ දෙවන වෙළඳසැල් අංකය Admin පැනලයෙන් වෙනස් කරගත හැකි අතර, ඇණවුම් සහ ප්‍රතිචාර ඒ අනුව යොමු වේ.
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>EDO App - Smart Food & Stores</title>
+  
+  <!-- PWA Settings -->
+  <meta name="theme-color" content="#10b981">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- FontAwesome & Fonts -->
+  <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+  
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --accent: #f59e0b;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --gray: #64748b;
+      --red: #ef4444;
+      --border: #e2e8f0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--light); color: var(--dark); padding-bottom: 75px; }
+
+    /* Top Header */
+    header {
+      background: var(--primary);
+      color: var(--white);
+      padding: 12px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .brand-title { display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 1.2rem; }
+    
+    /* Install / Download Button */
+    .btn-install {
+      background: var(--white);
+      color: var(--primary-dark);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 56px;
+      z-index: 99;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      flex: 1;
+      min-width: 75px;
+      text-align: center;
+      padding: 10px 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray);
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+    }
+    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+    .page-section { display: none; padding: 16px; }
+    .page-section.active { display: block; }
+
+    /* Banner Area */
+    .banner-container { margin-bottom: 16px; border-radius: 12px; overflow: hidden; max-height: 180px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .banner-container img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Product Grid */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .item-card { background: var(--white); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
+    .item-card img { width: 100%; height: 120px; object-fit: cover; }
+    .item-info { padding: 8px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .item-title { font-size: 0.85rem; font-weight: bold; margin-bottom: 4px; }
+    .item-price { color: var(--primary-dark); font-weight: bold; font-size: 0.95rem; margin-bottom: 8px; }
+    .btn-buy { background: var(--primary); color: #fff; border: none; padding: 6px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; }
+
+    /* Video Reel Section */
+    .reel-container { display: flex; flex-direction: column; gap: 16px; max-width: 440px; margin: 0 auto; }
+    .reel-box { background: #000; border-radius: 14px; overflow: hidden; position: relative; height: 460px; display: flex; align-items: center; justify-content: center; }
+    .reel-box video { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Feedback & Admin Forms */
+    .box-container { background: var(--white); padding: 16px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 16px; }
+    input, textarea, select { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; outline: none; font-size: 0.9rem; }
+    input:focus, textarea:focus { border-color: var(--primary); }
+    .btn-submit { width: 100%; background: var(--primary); color: #fff; padding: 10px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    
+    .star-select { display: flex; gap: 6px; font-size: 1.4rem; color: #cbd5e1; cursor: pointer; margin: 8px 0; }
+    .star-select .fa-star.active { color: var(--accent); }
+    
+    .fb-row { background: var(--white); padding: 10px; border-radius: 8px; border-left: 4px solid var(--primary); margin-bottom: 8px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; }
+    .del-btn { color: var(--red); background: none; border: none; cursor: pointer; font-size: 0.9rem; }
+
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); height: 60px; display: flex; border-top: 1px solid var(--border); z-index: 100; }
+    .b-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--gray); text-decoration: none; font-size: 0.72rem; border: none; background: none; }
+    .b-item.active { color: var(--primary); font-weight: bold; }
+    .b-item i { font-size: 1.15rem; margin-bottom: 2px; }
+  </style>
+
+  <!-- Firebase Compat Library -->
+  <script src="[https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js](https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js)"></script>
+  <script src="[https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js](https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js)"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand-title">
+      <i class="fa-solid fa-leaf"></i>
+      <span>EDO App</span>
+    </div>
+    <button class="btn-install" id="installBtn" onclick="installAppPrompt()">
+      <i class="fa-solid fa-download"></i> App Download
+    </button>
+  </header>
+
+  <!-- Navigation Tabs -->
   <nav class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('home')">Home</button>
-    <button class="tab-btn" onclick="switchTab('food')">ආහාර</button>
-    <button class="tab-btn" onclick="switchTab('stores')">වෙළඳසැල්</button>
-    <button class="tab-btn" onclick="switchTab('videos')">Videos</button>
-    <button class="tab-btn" onclick="switchTab('feedbacks')">Feedbacks</button>
-    <button class="tab-btn" onclick="switchTab('admin')">Admin</button>
+    <button class="tab-btn active" onclick="switchSection('home')">Home</button>
+    <button class="tab-btn" onclick="switchSection('food')">ආහාර</button>
+    <button class="tab-btn" onclick="switchSection('stores')">වෙළඳසැල්</button>
+    <button class="tab-btn" onclick="switchSection('videos')">Videos</button>
+    <button class="tab-btn" onclick="switchSection('feedbacks')">Feedbacks</button>
+    <button class="tab-btn" onclick="switchSection('admin')">Admin</button>
   </nav>
 
   <!-- HOME SECTION -->
   <section id="sec-home" class="page-section active">
-    <h3 style="margin-bottom: 12px;">විශේෂ දීමනා සහ භාණ්ඩ</h3>
-    <div class="card-grid" id="home-items-grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400" alt="Item">
-        <div class="card-body">
-          <div class="card-title">නැවුම් එළවළු හා පලතුරු පැකේජය</div>
-          <div class="card-price">රු. 850.00</div>
-          <button class="btn-order" onclick="sendOrder('නැවුම් එළවළු හා පලතුරු පැකේජය', 850)">
-            <i class="fa-brands fa-whatsapp"></i> ඇණවුම් කරන්න
-          </button>
-        </div>
-      </div>
+    <!-- Live Promotional Banner -->
+    <div class="banner-container" id="bannerDisplay">
+      <img id="bannerImg" src="[https://images.unsplash.com/photo-1542838132-92c53300491e?w=800](https://images.unsplash.com/photo-1542838132-92c53300491e?w=800)" alt="EDO Banner">
+    </div>
+
+    <h3 style="margin-bottom: 12px; font-size: 1rem;">නැවුම් භාණ්ඩ සහ සේවා</h3>
+    <div class="card-grid" id="live-products-grid">
+      <!-- Live items load here -->
     </div>
   </section>
 
   <!-- FOOD SECTION -->
   <section id="sec-food" class="page-section">
-    <h3 style="margin-bottom: 12px;">EDO හෙළ බොජුන්</h3>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400" alt="Rice">
-        <div class="card-body">
-          <div class="card-title">ගමේ බත් පාර්සලය</div>
-          <div class="card-price">රු. 350.00</div>
-          <button class="btn-order" onclick="sendOrder('ගමේ බත් පාර්සලය', 350)">
-            <i class="fa-brands fa-whatsapp"></i> ඇණවුම් කරන්න
-          </button>
-        </div>
-      </div>
+    <h3 style="margin-bottom: 12px; font-size: 1rem;">EDO හෙළ බොජුන්</h3>
+    <div class="card-grid" id="live-food-grid">
+      <!-- Live food items load here -->
     </div>
   </section>
 
   <!-- STORES SECTION -->
   <section id="sec-stores" class="page-section">
-    <h3 style="margin-bottom: 12px;">ලියාපදිංචි වෙළඳසැල්</h3>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=400" alt="Store">
-        <div class="card-body">
-          <div class="card-title">EDO සුපිරි වෙළඳසැල</div>
-          <div style="font-size: 0.85rem; color: var(--gray); margin-bottom: 8px;">කුරුවිට</div>
-          <button class="btn-order" onclick="sendInquiry('EDO සුපිරි වෙළඳසැල')">
-            <i class="fa-brands fa-whatsapp"></i> විමසන්න
-          </button>
-        </div>
-      </div>
+    <h3 style="margin-bottom: 12px; font-size: 1rem;">ලියාපදිංචි වෙළඳසැල්</h3>
+    <div class="card-grid" id="live-stores-grid">
+      <!-- Stores list loads here -->
     </div>
   </section>
 
-  <!-- VIDEOS / REELS SECTION -->
+  <!-- VIDEOS SECTION -->
   <section id="sec-videos" class="page-section">
-    <h3 style="margin-bottom: 12px; color: var(--primary);">EDO කෙටි වීඩියෝ (Short Reels)</h3>
+    <h3 style="margin-bottom: 12px; font-size: 1rem; color: var(--primary);">EDO කෙටි වීඩියෝ</h3>
     <div class="reel-container">
-      <div class="reel-card">
-        <video src="https://assets.mixkit.co/videos/preview/mixkit-hands-holding-fresh-vegetables-40436-large.mp4" controls loop playsinline></video>
-        <div class="reel-info">
-          <h4>නැවුම් දේශීය නිෂ්පාදන</h4>
-          <p>සෘජුවම නිෂ්පාදකයාගෙන් ඔබේ නිවසටම</p>
-        </div>
+      <div class="reel-box">
+        <video src="[https://assets.mixkit.co/videos/preview/mixkit-hands-holding-fresh-vegetables-40436-large.mp4](https://assets.mixkit.co/videos/preview/mixkit-hands-holding-fresh-vegetables-40436-large.mp4)" controls loop playsinline></video>
       </div>
     </div>
   </section>
 
-  <!-- CUSTOMER FEEDBACKS -->
+  <!-- FEEDBACKS SECTION -->
   <section id="sec-feedbacks" class="page-section">
-    <div class="feedback-box">
+    <div class="box-container">
       <h3>ඔබගේ වටිනා අදහස (Customer Feedback)</h3>
-      <p style="font-size: 0.85rem; color: var(--gray); margin-bottom: 10px;">අපගේ සේවාව පිළිබඳ ඔබේ අදහස සටහන් කරන්න.</p>
+      <p style="font-size: 0.8rem; color: var(--gray); margin-bottom: 8px;">සේවාව ගැන ඔබේ අදහස ලියා එවන්න.</p>
       
-      <input type="text" id="fb-user-name" placeholder="ඔබගේ නම">
-      <textarea id="fb-user-msg" rows="3" placeholder="ඔබේ අදහස මෙහි ලියන්න..."></textarea>
+      <input type="text" id="custName" placeholder="ඔබගේ නම">
+      <textarea id="custMsg" rows="3" placeholder="ඔබේ අදහස මෙහි ලියන්න..."></textarea>
       
-      <div style="font-size: 0.85rem; font-weight: bold;">තරු අගය කිරීම (Rating):</div>
-      <div class="star-rating" id="rating-stars">
+      <div style="font-size: 0.8rem; font-weight: bold;">තරු අගය කිරීම:</div>
+      <div class="star-select" id="starContainer">
         <i class="fa-solid fa-star active" data-v="1"></i>
         <i class="fa-solid fa-star active" data-v="2"></i>
         <i class="fa-solid fa-star active" data-v="3"></i>
@@ -206,58 +479,75 @@
         <i class="fa-solid fa-star active" data-v="5"></i>
       </div>
 
-      <button class="btn-action" onclick="submitFeedback()">අදහස යොමු කරන්න</button>
+      <button class="btn-submit" onclick="submitUserFeedback()">අදහස යොමු කරන්න</button>
     </div>
 
-    <h4 style="margin: 16px 0 10px 0;">පාරිභෝගික ප්‍රතිචාර (Customer Reviews)</h4>
-    <div id="feedback-list">
-      <!-- Live Feedbacks load here -->
-    </div>
+    <h4 style="margin: 14px 0 8px 0; font-size: 0.95rem;">පාරිභෝගික ප්‍රතිචාර</h4>
+    <div id="liveFeedbacksContainer"></div>
   </section>
 
   <!-- ADMIN PANEL -->
   <section id="sec-admin" class="page-section">
-    <div class="admin-card">
-      <h3><i class="fa-solid fa-gear"></i> WhatsApp Alerts කළමනාකරණය</h3>
-      <p style="font-size: 0.8rem; color: var(--gray); margin-bottom: 12px;">පණිවිඩ සහ Alert ලැබිය යුතු WhatsApp අංක මෙතැනින් වෙනස් කරන්න.</p>
-      
-      <label style="font-size: 0.85rem; font-weight: bold;">ප්‍රධාන ඇඩ්මින් WhatsApp අංකය:</label>
-      <input type="text" id="cfg-main-phone" placeholder="උදා: 94712345678">
-      
-      <label style="font-size: 0.85rem; font-weight: bold;">අනිත් ශොප් එකේ (2nd Store) WhatsApp අංකය:</label>
-      <input type="text" id="cfg-shop-phone" placeholder="උදා: 94776543210">
-      
-      <button class="btn-action" onclick="saveWhatsAppNumbers()">අංක යාවත්කාලීන කරන්න (Save)</button>
+    <!-- 1. Banners & Items Upload (Original Features) -->
+    <div class="box-container">
+      <h3><i class="fa-solid fa-image"></i> බැනර් එක වෙනස් කිරීම (Banner Update)</h3>
+      <input type="text" id="adminBannerUrl" placeholder="බැනර් එකේ Image URL එක">
+      <button class="btn-submit" onclick="updateBanner()">බැනරය යාවත්කාලීන කරන්න</button>
     </div>
 
-    <div class="admin-card">
-      <h3><i class="fa-solid fa-comments"></i> Feedbacks කළමනාකරණය (Admin Only)</h3>
-      <p style="font-size: 0.8rem; color: var(--gray); margin-bottom: 12px;">අනවශ්‍ය ප්‍රතිචාර මෙතැනින් Delete කළ හැක.</p>
-      <div id="admin-feedback-list">
-        <!-- Admin Feedback items with Delete option -->
-      </div>
+    <div class="box-container">
+      <h3><i class="fa-solid fa-plus-circle"></i> අලුත් භාණ්ඩයක් ඇතුළත් කිරීම</h3>
+      <input type="text" id="prodTitle" placeholder="භාණ්ඩයේ නම">
+      <input type="number" id="prodPrice" placeholder="මිල (රු.)">
+      <input type="text" id="prodImg" placeholder="Image URL එක">
+      <select id="prodCategory">
+        <option value="home">Home Products</option>
+        <option value="food">ආහාර (Hela Bojun)</option>
+        <option value="stores">වෙළඳසැල් (Stores)</option>
+      </select>
+      <button class="btn-submit" onclick="uploadNewProduct()">භාණ්ඩය ඇතුළත් කරන්න</button>
+    </div>
+
+    <!-- 2. Dual WhatsApp Numbers Management -->
+    <div class="box-container">
+      <h3><i class="fa-solid fa-phone"></i> WhatsApp Alerts කළමනාකරණය</h3>
+      <p style="font-size: 0.8rem; color: var(--gray); margin-bottom: 8px;">ඕඩර් සහ Alerts ලැබිය යුතු අංක දෙක මෙතැනින් Update කරන්න.</p>
+      
+      <label style="font-size: 0.8rem; font-weight: bold;">1. ප්‍රධාන ඇඩ්මින් WhatsApp අංකය:</label>
+      <input type="text" id="numMainAdmin" placeholder="උදා: 94712345678">
+      
+      <label style="font-size: 0.8rem; font-weight: bold;">2. අනිත් ශොප් එකේ (2nd Store) WhatsApp අංකය:</label>
+      <input type="text" id="numBranchStore" placeholder="උදා: 94776543210">
+      
+      <button class="btn-submit" onclick="saveAdminNumbers()">අංක සුරකින්න (Save)</button>
+    </div>
+
+    <!-- 3. Manage Feedbacks with Delete Option -->
+    <div class="box-container">
+      <h3><i class="fa-solid fa-comments"></i> Feedbacks පාලනය සහ Delete කිරීම</h3>
+      <div id="adminFeedbacksList"></div>
     </div>
   </section>
 
-  <!-- BOTTOM NAVIGATION -->
+  <!-- Bottom Navigation -->
   <div class="bottom-nav">
-    <button class="nav-item active" onclick="switchTab('home')">
+    <button class="b-item active" onclick="switchSection('home')">
       <i class="fa-solid fa-house"></i>
       <span>Home</span>
     </button>
-    <button class="nav-item" onclick="switchTab('food')">
+    <button class="b-item" onclick="switchSection('food')">
       <i class="fa-solid fa-utensils"></i>
       <span>Food</span>
     </button>
-    <button class="nav-item" onclick="switchTab('stores')">
+    <button class="b-item" onclick="switchSection('stores')">
       <i class="fa-solid fa-store"></i>
       <span>Stores</span>
     </button>
-    <button class="nav-item" onclick="switchTab('videos')">
+    <button class="b-item" onclick="switchSection('videos')">
       <i class="fa-solid fa-play"></i>
       <span>Videos</span>
     </button>
-    <button class="nav-item" onclick="switchTab('feedbacks')">
+    <button class="b-item" onclick="switchSection('feedbacks')">
       <i class="fa-solid fa-comment-dots"></i>
       <span>Feedback</span>
     </button>
@@ -266,7 +556,7 @@
   <script>
     // Firebase Configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyB8u4...", // ඔබගේ Firebase API Key එක
+      apiKey: "AIzaSyB8u4...", // ඔබගේ API Key එක
       authDomain: "edo-store.firebaseapp.com",
       projectId: "edo-store",
       storageBucket: "edo-store.appspot.com",
@@ -277,175 +567,259 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    let currentRating = 5;
-    let mainWhatsAppNumber = "94770000000"; 
-    let shopWhatsAppNumber = "94770000000"; 
+    let userRating = 5;
+    let targetMainPhone = "94770000000";
+    let targetBranchPhone = "94770000000";
+    let deferredPrompt;
 
-    // Tab Switching
-    function switchTab(tab) {
-      document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    // PWA Install prompt listener
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = document.getElementById('installBtn');
+      if (btn) btn.style.display = 'flex';
+    });
 
-      const sec = document.getElementById('sec-' + tab);
-      if(sec) sec.classList.add('active');
-
-      const tabBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.innerText.toLowerCase().includes(tab));
-      if(tabBtn) tabBtn.classList.add('active');
+    function installAppPrompt() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          deferredPrompt = null;
+        });
+      } else {
+        alert("ඔබගේ බ්‍රවුසරයේ ඉහළ දකුණු කෙළවරේ තිත් තුන ඔබා 'Add to Home Screen' හෝ 'Install App' තෝරන්න.");
+      }
     }
 
-    // Star Rating Logic
-    document.querySelectorAll('#rating-stars i').forEach(star => {
+    // Switch Tabs
+    function switchSection(secName) {
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.b-item').forEach(b => b.classList.remove('active'));
+
+      const target = document.getElementById('sec-' + secName);
+      if (target) target.classList.add('active');
+
+      const activeTab = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.innerText.toLowerCase().includes(secName));
+      if (activeTab) activeTab.classList.add('active');
+    }
+
+    // Rating star clicks
+    document.querySelectorAll('#starContainer i').forEach(star => {
       star.addEventListener('click', function() {
-        currentRating = parseInt(this.getAttribute('data-v'));
-        document.querySelectorAll('#rating-stars i').forEach((s, idx) => {
-          if (idx < currentRating) s.classList.add('active');
+        userRating = parseInt(this.getAttribute('data-v'));
+        document.querySelectorAll('#starContainer i').forEach((s, idx) => {
+          if (idx < userRating) s.classList.add('active');
           else s.classList.remove('active');
         });
       });
     });
 
-    // Load Settings (WhatsApp Numbers)
-    function loadSettings() {
-      db.collection('settings').doc('whatsapp_config').onSnapshot(doc => {
-        if(doc.exists) {
-          const data = doc.data();
-          mainWhatsAppNumber = data.mainPhone || "94770000000";
-          shopWhatsAppNumber = data.shopPhone || "94770000000";
-          document.getElementById('cfg-main-phone').value = mainWhatsAppNumber;
-          document.getElementById('cfg-shop-phone').value = shopWhatsAppNumber;
+    // 1. Settings (WhatsApp numbers)
+    function fetchSettings() {
+      db.collection('settings').doc('config').onSnapshot(doc => {
+        if (doc.exists) {
+          const d = doc.data();
+          targetMainPhone = d.mainPhone || "94770000000";
+          targetBranchPhone = d.branchPhone || "94770000000";
+          document.getElementById('numMainAdmin').value = targetMainPhone;
+          document.getElementById('numBranchStore').value = targetBranchPhone;
         }
       });
     }
 
-    // Save WhatsApp Numbers from Admin
-    function saveWhatsAppNumbers() {
-      const mainP = document.getElementById('cfg-main-phone').value.trim();
-      const shopP = document.getElementById('cfg-shop-phone').value.trim();
+    function saveAdminNumbers() {
+      const p1 = document.getElementById('numMainAdmin').value.trim();
+      const p2 = document.getElementById('numBranchStore').value.trim();
 
-      if(!mainP || !shopP) {
-        alert("කරුණාකර දුරකථන අංක දෙකම ඇතුළත් කරන්න.");
+      if (!p1 || !p2) {
+        alert("කරුණාකර අංක දෙකම සම්පූර්ණ කරන්න.");
         return;
       }
 
-      db.collection('settings').doc('whatsapp_config').set({
-        mainPhone: mainP,
-        shopPhone: shopP,
+      db.collection('settings').doc('config').set({
+        mainPhone: p1,
+        branchPhone: p2,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-      }).then(() => {
-        alert("WhatsApp අංක දෙකම සාර්ථකව Update විය!");
-      }).catch(err => {
-        alert("දෝෂයක්: " + err.message);
+      }).then(() => alert("අංක දෙකම සාර්ථකව යාවත්කාලීන විය!"))
+        .catch(err => alert("දෝෂයක්: " + err.message));
+    }
+
+    // 2. Banner Management
+    function fetchBanner() {
+      db.collection('settings').doc('banner').onSnapshot(doc => {
+        if (doc.exists && doc.data().url) {
+          document.getElementById('bannerImg').src = doc.data().url;
+          document.getElementById('adminBannerUrl').value = doc.data().url;
+        }
       });
     }
 
-    // Submit Feedback
-    function submitFeedback() {
-      const name = document.getElementById('fb-user-name').value.trim();
-      const msg = document.getElementById('fb-user-msg').value.trim();
+    function updateBanner() {
+      const url = document.getElementById('adminBannerUrl').value.trim();
+      if (!url) return alert("කරුණාකර Image URL එකක් ඇතුළත් කරන්න.");
 
-      if(!name || !msg) {
-        alert("කරුණාකර නම සහ අදහස ලියා එවන්න.");
+      db.collection('settings').doc('banner').set({
+        url: url,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => alert("බැනරය සාර්ථකව Update විය!"))
+        .catch(err => alert("දෝෂයක්: " + err.message));
+    }
+
+    // 3. Product Upload
+    function uploadNewProduct() {
+      const title = document.getElementById('prodTitle').value.trim();
+      const price = document.getElementById('prodPrice').value.trim();
+      const img = document.getElementById('prodImg').value.trim();
+      const category = document.getElementById('prodCategory').value;
+
+      if (!title || !price || !img) {
+        alert("කරුණාකර සියලු විස්තර පුරවන්න.");
+        return;
+      }
+
+      db.collection('products').add({
+        title: title,
+        price: parseFloat(price),
+        img: img,
+        category: category,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+        alert("භාණ්ඩය සාර්ථකව ඇතුළත් විය!");
+        document.getElementById('prodTitle').value = '';
+        document.getElementById('prodPrice').value = '';
+        document.getElementById('prodImg').value = '';
+      }).catch(err => alert("දෝෂයක්: " + err.message));
+    }
+
+    // 4. Load Products
+    function fetchProducts() {
+      db.collection('products').orderBy('createdAt', 'desc').onSnapshot(snap => {
+        const homeGrid = document.getElementById('live-products-grid');
+        const foodGrid = document.getElementById('live-food-grid');
+        const storeGrid = document.getElementById('live-stores-grid');
+
+        homeGrid.innerHTML = '';
+        foodGrid.innerHTML = '';
+        storeGrid.innerHTML = '';
+
+        snap.forEach(doc => {
+          const item = doc.data();
+          const cardHtml = `
+            <div class="item-card">
+              <img src="${item.img}" alt="${item.title}">
+              <div class="item-info">
+                <div>
+                  <div class="item-title">${item.title}</div>
+                  <div class="item-price">රු. ${item.price}</div>
+                </div>
+                <button class="btn-buy" onclick="routeOrder('${item.title}', ${item.price})">
+                  <i class="fa-brands fa-whatsapp"></i> ඇණවුම් කරන්න
+                </button>
+              </div>
+            </div>
+          `;
+
+          if (item.category === 'food') foodGrid.innerHTML += cardHtml;
+          else if (item.category === 'stores') storeGrid.innerHTML += cardHtml;
+          else homeGrid.innerHTML += cardHtml;
+        });
+      });
+    }
+
+    // 5. Submit & Load Feedbacks
+    function submitUserFeedback() {
+      const name = document.getElementById('custName').value.trim();
+      const msg = document.getElementById('custMsg').value.trim();
+
+      if (!name || !msg) {
+        alert("කරුණාකර නම සහ අදහස ලියන්න.");
         return;
       }
 
       db.collection('feedbacks').add({
         name: name,
         message: msg,
-        rating: currentRating,
+        rating: userRating,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        alert("ඔබගේ වටිනා අදහස ලැබුණා. බොහොම ස්තුතියි!");
+        alert("ඔබගේ වටිනා අදහස ලැබුණා. ස්තුතියි!");
         
-        // WhatsApp Alert to Main Admin & Secondary Shop
-        const alertText = encodeURIComponent(`📢 *නව Feedback එකක් ලැබුණා!*\n\n👤 පාරිභෝගිකයා: ${name}\n⭐ Ratings: ${currentRating}/5\n💬 අදහස: ${msg}`);
-        window.open(`https://wa.me/${mainWhatsAppNumber}?text=${alertText}`, '_blank');
-        
-        document.getElementById('fb-user-name').value = '';
-        document.getElementById('fb-user-msg').value = '';
+        // Alert to WhatsApp
+        const fbAlert = encodeURIComponent(`📢 *නව Feedback එකක්!*\n\n👤 නම: ${name}\n⭐ Ratings: ${userRating}/5\n💬 අදහස: ${msg}`);
+        window.open(`[https://wa.me/$](https://wa.me/$){targetMainPhone}?text=${fbAlert}`, '_blank');
+
+        document.getElementById('custName').value = '';
+        document.getElementById('custMsg').value = '';
       }).catch(err => alert("දෝෂයක්: " + err.message));
     }
 
-    // Realtime Load Feedbacks (User & Admin views)
-    function loadFeedbacks() {
+    function fetchFeedbacks() {
       db.collection('feedbacks').orderBy('timestamp', 'desc').onSnapshot(snap => {
-        const userList = document.getElementById('feedback-list');
-        const adminList = document.getElementById('admin-feedback-list');
-        userList.innerHTML = '';
-        adminList.innerHTML = '';
-
-        if(snap.empty) {
-          userList.innerHTML = '<p style="color:var(--gray); font-size:0.85rem;">තවමත් කිසිදු ප්‍රතිචාරයක් නොමැත.</p>';
-          adminList.innerHTML = '<p style="color:var(--gray); font-size:0.85rem;">ප්‍රතිචාර කිසිවක් නැත.</p>';
-          return;
-        }
+        const userContainer = document.getElementById('liveFeedbacksContainer');
+        const adminContainer = document.getElementById('adminFeedbacksList');
+        userContainer.innerHTML = '';
+        adminContainer.innerHTML = '';
 
         snap.forEach(doc => {
-          const fb = doc.data();
-          const stars = '⭐'.repeat(fb.rating || 5);
+          const d = doc.data();
+          const stars = '⭐'.repeat(d.rating || 5);
 
-          // User Card
-          const card = document.createElement('div');
-          card.className = 'feedback-item';
-          card.innerHTML = `
-            <div>
-              <div class="feedback-user">${fb.name} <span style="font-size:0.75rem;">${stars}</span></div>
-              <div class="feedback-text">${fb.message}</div>
+          // User View
+          userContainer.innerHTML += `
+            <div class="fb-row">
+              <div>
+                <div style="font-weight:bold; font-size:0.85rem;">${d.name} <span style="font-size:0.75rem;">${stars}</span></div>
+                <div style="font-size:0.8rem; color:var(--gray); margin-top:2px;">${d.message}</div>
+              </div>
             </div>
           `;
-          userList.appendChild(card);
 
-          // Admin Card (with Delete option)
-          const adminCard = document.createElement('div');
-          adminCard.className = 'feedback-item';
-          adminCard.innerHTML = `
-            <div>
-              <div class="feedback-user">${fb.name} (${fb.rating} Stars)</div>
-              <div class="feedback-text">${fb.message}</div>
+          // Admin View with Delete
+          adminContainer.innerHTML += `
+            <div class="fb-row">
+              <div>
+                <div style="font-weight:bold; font-size:0.85rem;">${d.name} (${d.rating} Stars)</div>
+                <div style="font-size:0.8rem; color:var(--gray);">${d.message}</div>
+              </div>
+              <button class="del-btn" onclick="removeFeedback('${doc.id}')" title="Delete">
+                <i class="fa-solid fa-trash"></i>
+              </button>
             </div>
-            <button class="del-btn" onclick="deleteFeedback('${doc.id}')" title="Delete">
-              <i class="fa-solid fa-trash"></i>
-            </button>
           `;
-          adminList.appendChild(adminCard);
         });
       });
     }
 
-    // Delete Feedback (Admin)
-    function deleteFeedback(id) {
-      if(confirm("මෙම Feedback එක සදහටම මකා දැමීමට අවශ්‍යද?")) {
+    function removeFeedback(id) {
+      if (confirm("මෙම ප්‍රතිචාරය සදහටම මකා දැමීමට අවශ්‍යද?")) {
         db.collection('feedbacks').doc(id).delete()
-          .then(() => alert("Feedback එක සාර්ථකව මකා දැමුණා!"))
+          .then(() => alert("Feedback එක මකා දැමුණා!"))
           .catch(err => alert("දෝෂයක්: " + err.message));
       }
     }
 
-    // Order Function (Sends alerts to Main Store & 2nd Shop)
-    function sendOrder(item, price) {
-      const orderMsg = encodeURIComponent(`🛒 *නව ඇණවුමක් (Order)!*\n\n📦 භාණ්ඩය: ${item}\n💰 මිල: රු. ${price}\n\nකරුණාකර විස්තර ලබා දෙන්න.`);
+    // Order Routing (Dual WhatsApp Notification)
+    function routeOrder(itemName, price) {
+      const text = encodeURIComponent(`🛒 *නව ඇණවුමක් (EDO Order)!*\n\n📦 භාණ්ඩය: ${itemName}\n💰 මිල: රු. ${price}\n📅 වේලාව: ${new Date().toLocaleTimeString()}\n\nකරුණාකර විස්තර ලබා දෙන්න.`);
       
-      // WhatsApp alert opens
-      window.open(`https://wa.me/${mainWhatsAppNumber}?text=${orderMsg}`, '_blank');
+      // Main Store
+      window.open(`[https://wa.me/$](https://wa.me/$){targetMainPhone}?text=${text}`, '_blank');
       
-      // Optionally notify the 2nd shop number if needed:
-      if(shopWhatsAppNumber && shopWhatsAppNumber !== mainWhatsAppNumber) {
+      // Secondary Store Alert
+      if (targetBranchPhone && targetBranchPhone !== targetMainPhone) {
         setTimeout(() => {
-          window.open(`https://wa.me/${shopWhatsAppNumber}?text=${orderMsg}`, '_blank');
-        }, 1500);
+          window.open(`[https://wa.me/$](https://wa.me/$){targetBranchPhone}?text=${text}`, '_blank');
+        }, 1200);
       }
     }
 
-    // Inquiry
-    function sendInquiry(store) {
-      const txt = encodeURIComponent(`👋 මට ${store} පිළිබඳ විස්තර දැන ගැනීමට අවශ්‍යයි.`);
-      window.open(`https://wa.me/${mainWhatsAppNumber}?text=${txt}`, '_blank');
-    }
-
-    // Initialize
+    // App Startup
     window.onload = function() {
-      loadSettings();
-      loadFeedbacks();
+      fetchSettings();
+      fetchBanner();
+      fetchProducts();
+      fetchFeedbacks();
     };
   </script>
 </body>
