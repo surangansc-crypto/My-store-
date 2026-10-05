@@ -12,8 +12,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="EDO App">
 
-    <!-- Auto Inline PWA Manifest (වෙනම manifest.json ගොනු අවශ්‍ය නොවේ) -->
-    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22EDO%20Entrepreneur%22%2C%22short_name%22%3A%22EDO%20App%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%231b5e20%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1542838132-92c53300491e%3Fw%3D192%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- App & Browser Logo (Vector Icon) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%231b5e20'/%3E%3Ccircle cx='256' cy='256' r='210' fill='none' stroke='%23ffb300' stroke-width='14'/%3E%3Ctext x='50%25' y='320' font-family='Arial, sans-serif' font-weight='900' font-size='160' fill='%23ffffff' text-anchor='middle'%3EEDO%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%231b5e20'/%3E%3Ccircle cx='256' cy='256' r='210' fill='none' stroke='%23ffb300' stroke-width='14'/%3E%3Ctext x='50%25' y='320' font-family='Arial, sans-serif' font-weight='900' font-size='160' fill='%23ffffff' text-anchor='middle'%3EEDO%3C/text%3E%3C/svg%3E">
 
     <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -111,16 +115,19 @@
         }
 
         .logo-badge {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            background: #1b5e20;
+            border: 2px solid var(--gold);
             color: var(--white);
             width: 44px;
             height: 44px;
             border-radius: 10px;
             display: grid;
             place-items: center;
-            font-size: 1.35rem;
-            font-weight: 800;
+            font-size: 1.15rem;
+            font-weight: 900;
             overflow: hidden;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
         .logo-badge img {
@@ -696,7 +703,7 @@
         <div class="header-content">
             <a href="#" class="logo-area">
                 <div class="logo-badge" id="logoContainer">
-                    <span id="logoText">E</span>
+                    <span id="logoText">EDO</span>
                 </div>
                 <div class="logo-title">
                     <h1 id="brandTitle">EDO Entrepreneur</h1>
@@ -767,7 +774,7 @@
         </div>
 
         <div class="products-grid" id="productGrid">
-            <!-- Dynamic Products -->
+            <!-- Dynamic Products Loaded from Firebase Firestore -->
         </div>
 
         <section class="feedback-section">
@@ -1113,14 +1120,13 @@
 
     <!-- Scripts Logic -->
     <script>
-        // ----------------- Service Worker (Inline Auto Registration) -----------------
+        // ----------------- Service Worker (Auto Register sw.js) -----------------
         if ('serviceWorker' in navigator) {
-            const swCode = `
-                self.addEventListener('install', (e) => self.skipWaiting());
-                self.addEventListener('fetch', (e) => {});
-            `;
-            const blob = new Blob([swCode], { type: 'application/javascript' });
-            navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker Active:', reg.scope))
+                    .catch(err => console.log('Service Worker Error:', err));
+            });
         }
 
         // ----------------- PWA Install Trigger -----------------
@@ -1133,7 +1139,7 @@
         function triggerPwaInstall() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(() => {
+                deferredPrompt.userChoice.then((choiceResult) => {
                     deferredPrompt = null;
                 });
             } else {
@@ -1244,7 +1250,7 @@
             if (settings.logoImg) {
                 logoBox.innerHTML = `<img src="${settings.logoImg}" alt="Logo">`;
             } else {
-                logoBox.innerHTML = `<span id="logoText">E</span>`;
+                logoBox.innerHTML = `<span id="logoText">EDO</span>`;
             }
 
             updatePricePreview();
@@ -1410,7 +1416,6 @@
             }).join('');
         }
 
-        // Dual WhatsApp Routing on Order
         function handleCustomerOrder(title, seller, loc, finalPrice) {
             const orderMsg = encodeURIComponent(
                 `*EDO Entrepreneur ඇණවුම:*\n` +
@@ -1420,10 +1425,8 @@
                 `මට මෙම භාණ්ඩය ඇණවුම් කිරීමට අවශ්‍යයි.`
             );
 
-            // Send to Main Shop
             window.open(`https://wa.me/${settings.whatsapp}?text=${orderMsg}`, '_blank');
 
-            // Send to 2nd Branch / Shop if configured
             if (settings.shop2Whatsapp && settings.shop2Whatsapp !== settings.whatsapp) {
                 setTimeout(() => {
                     window.open(`https://wa.me/${settings.shop2Whatsapp}?text=${orderMsg}`, '_blank');
@@ -1583,7 +1586,6 @@
                     const data = doc.data();
                     const stars = '⭐'.repeat(data.rating || 5);
 
-                    // Client View
                     liveBox.innerHTML += `
                         <div class="feedback-item">
                             <div>
@@ -1593,7 +1595,6 @@
                         </div>
                     `;
 
-                    // Admin View with Delete
                     adminBox.innerHTML += `
                         <div class="feedback-item" style="border-left-color: #ef4444; align-items:center;">
                             <div>
