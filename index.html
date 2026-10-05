@@ -12,11 +12,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="EDO App">
 
+    <!-- Built-in PWA Web App Manifest -->
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22EDO%20Entrepreneur%22%2C%22short_name%22%3A%22EDO%20App%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%231b5e20%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1542838132-92c53300491e%3Fw%3D192%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
+
     <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Firebase SDK (Firestore Integration) -->
+    <!-- Firebase SDK (Firestore) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
 
@@ -49,7 +52,6 @@
             padding-bottom: 50px;
         }
 
-        /* Top Bar */
         .top-bar {
             background: var(--primary-color);
             color: var(--white);
@@ -69,7 +71,6 @@
             font-weight: 600;
         }
 
-        /* Discount / Announcement Bar */
         .discount-announcement-bar {
             background: var(--gold);
             color: #111;
@@ -83,7 +84,6 @@
             gap: 8px;
         }
 
-        /* Header */
         header {
             background: var(--white);
             border-bottom: 2px solid var(--border-color);
@@ -183,7 +183,6 @@
             gap: 5px;
         }
 
-        /* App Download Button */
         .btn-app-download {
             background: linear-gradient(135deg, #10b981, #059669);
             color: var(--white);
@@ -205,7 +204,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Auto-Playing Ad Banner Section */
         .ad-slider-section {
             max-width: 1200px;
             margin: 15px auto 0;
@@ -277,7 +275,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
-        /* Hero Banner */
         .hero {
             background: linear-gradient(rgba(27, 94, 32, 0.88), rgba(46, 125, 50, 0.88)), url('https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
@@ -320,7 +317,6 @@
             border: 1px solid rgba(255, 255, 255, 0.35);
         }
 
-        /* Search Bar Section */
         .search-section {
             max-width: 1200px;
             margin: 20px auto 0;
@@ -357,7 +353,6 @@
             font-size: 1rem;
         }
 
-        /* Main Container */
         .main-container {
             max-width: 1200px;
             margin: 20px auto;
@@ -382,7 +377,6 @@
             gap: 8px;
         }
 
-        /* Categories Bar */
         .categories-wrapper {
             display: flex;
             gap: 8px;
@@ -409,7 +403,6 @@
             border-color: var(--primary-color);
         }
 
-        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -536,7 +529,6 @@
             text-decoration: none;
         }
 
-        /* Customer Feedback Section */
         .feedback-section {
             background: var(--white);
             border-radius: 12px;
@@ -571,7 +563,6 @@
             align-items: flex-start;
         }
 
-        /* Clean Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -641,7 +632,6 @@
             color: #14532d;
         }
 
-        /* Admin Table in Modal */
         .admin-table {
             width: 100%;
             border-collapse: collapse;
@@ -671,7 +661,6 @@
             font-weight: 600;
         }
 
-        /* Floating WhatsApp Button */
         .float-wa {
             position: fixed;
             bottom: 22px;
@@ -718,7 +707,6 @@
                 </div>
             </a>
             <div class="header-btns">
-                <!-- App Download / Install Button -->
                 <button class="btn-app-download" id="btnDownloadApp" onclick="triggerPwaInstall()">
                     <i class="fa-solid fa-download"></i> App Download
                 </button>
@@ -788,7 +776,7 @@
         </div>
 
         <div class="products-grid" id="productGrid">
-            <!-- Dynamic Products -->
+            <!-- Dynamic Products Loaded from Firebase Firestore -->
         </div>
 
         <!-- Live Customer Feedback Section -->
@@ -1044,7 +1032,7 @@
                         <input type="text" id="admAnnouncementInput" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
                     </div>
                     <button onclick="adminSaveSettings()" class="btn-main" style="grid-column: 1/-1; background:#4338ca; justify-content:center; padding: 8px;">
-                        <i class="fa-solid fa-floppy-disk"></i> සියලු ගාස්තු, අංක සහ බැංකු විස්තර Update කරන්න
+                        <i class="fa-solid fa-floppy-disk"></i> සියලු ගාස්තු, WhatsApp අංක සහ බැංකු විස්තර Update කරන්න
                     </button>
                 </div>
             </div>
@@ -1133,28 +1121,39 @@
                 </div>
             </div>
 
-            <!-- Admin Section 8: Backup / Restore Data -->
-            <div style="background: #f1f5f9; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                <div>
-                    <h5 style="font-size:0.85rem; color:#1e293b;"><i class="fa-solid fa-download"></i> Data Backup & Safety:</h5>
-                    <p style="font-size:0.75rem; color:#64748b;">ඔබ ඇතුළත් කළ සියලු දත්ත තනි File එකක් ලෙස සුරකින්න.</p>
-                </div>
-                <div style="display:flex; gap: 6px;">
-                    <button onclick="adminBackupData()" class="btn-main" style="background:#0f172a; padding:6px 12px; font-size:0.78rem;">
-                        <i class="fa-solid fa-download"></i> Backup File
-                    </button>
-                    <button onclick="document.getElementById('restoreFileInput').click()" class="btn-main" style="background:#475569; padding:6px 12px; font-size:0.78rem;">
-                        <i class="fa-solid fa-upload"></i> Restore
-                    </button>
-                    <input type="file" id="restoreFileInput" style="display:none;" accept=".json" onchange="adminRestoreData(event)">
-                </div>
-            </div>
-
         </div>
     </div>
 
     <!-- Scripts Logic -->
     <script>
+        // ----------------- Service Worker (Auto Inline Registration) -----------------
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                self.addEventListener('install', (e) => self.skipWaiting());
+                self.addEventListener('fetch', (e) => {});
+            `;
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+        }
+
+        // ----------------- PWA Install Trigger -----------------
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        function triggerPwaInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    deferredPrompt = null;
+                });
+            } else {
+                alert("ඔබගේ දුරකථනයේ හෝ බ්‍රවුසරයේ ඉහළ දකුණු කෙළවරේ ඇති තිත් 3 ඔබා 'Install App' (හෝ 'Add to Home screen') තෝරන්න.");
+            }
+        }
+
         // ----------------- Firebase Configuration -----------------
         const firebaseConfig = {
             apiKey: "AIzaSyB8u4...", // ඔබගේ Firebase API Key එක
@@ -1169,26 +1168,6 @@
             firebase.initializeApp(firebaseConfig);
         }
         const db = firebase.firestore();
-
-        // ----------------- PWA Install Handling -----------------
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            const btn = document.getElementById('btnDownloadApp');
-            if (btn) btn.style.display = 'inline-flex';
-        });
-
-        function triggerPwaInstall() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(() => {
-                    deferredPrompt = null;
-                });
-            } else {
-                alert("ඔබගේ දුරකථනයේ හෝ බ්‍රවුසරයේ ඉහළ දකුණු කෙළවරේ ඇති තිත් 3 ඔබා 'Add to Home screen' හෝ 'Install App' ලබා දෙන්න.");
-            }
-        }
 
         // ----------------- Default Configuration -----------------
         const DEFAULT_PASS = "admin123";
@@ -1207,45 +1186,9 @@
             announcement: "විශේෂ දීමනාව: භාණ්ඩ 2කට 15% ක සහ 3කට 25% ක විශේෂ වට්ටමක් හිමිවේ!"
         };
 
-        let settings = JSON.parse(localStorage.getItem('edo_settings')) || defaultSettings;
-
-        let defaultAds = [
-            {
-                img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80",
-                title: "දේශීය නිෂ්පාදන සහ සේවා ප්‍රචාරණය",
-                phone: "0784693750"
-            },
-            {
-                img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80",
-                title: "ස්වභාවික කොළපත් නිෂ්පාදන - තොග සහ සිල්ලර",
-                phone: "0784693750"
-            }
-        ];
-
-        let ads = JSON.parse(localStorage.getItem('edo_ads')) || defaultAds;
-
-        let defaultProducts = [
-            {
-                id: 1,
-                title: "ස්වභාවික කොළපත් පිඟන් (10 pcs)",
-                category: "අත්කම් නිර්මාණ",
-                seller: "සුරංග",
-                location: "කුරුවිට",
-                basePrice: 500,
-                images: ["https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=500&q=80"]
-            },
-            {
-                id: 2,
-                title: "පිරිසිදු කිතුල් පැණි බෝතලය (750ml)",
-                category: "ආහාර හා පාන",
-                seller: "සමන් කුමාර",
-                location: "රත්නපුර",
-                basePrice: 1600,
-                images: ["https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80"]
-            }
-        ];
-
-        let products = JSON.parse(localStorage.getItem('edo_products')) || defaultProducts;
+        let settings = { ...defaultSettings };
+        let ads = [];
+        let products = [];
         let currentCategory = "All";
         let searchQuery = "";
         let currentRatingVal = 5;
@@ -1286,7 +1229,18 @@
             }
         }
 
-        // Sync UI with Settings
+        // ----------------- Realtime Firebase Sync (Settings) -----------------
+        function syncSettingsFromFirebase() {
+            db.collection('settings').doc('general_config').onSnapshot(doc => {
+                if (doc.exists) {
+                    settings = { ...defaultSettings, ...doc.data() };
+                } else {
+                    db.collection('settings').doc('general_config').set(defaultSettings);
+                }
+                updateUIWithSettings();
+            });
+        }
+
         function updateUIWithSettings() {
             applyTheme(settings.theme || "green");
 
@@ -1336,9 +1290,20 @@
             };
         }
 
-        // Auto Slider Runner
+        // ----------------- Realtime Firebase Sync (Ads) -----------------
         let currentAdIdx = 0;
         let adInterval = null;
+
+        function syncAdsFromFirebase() {
+            db.collection('ads').orderBy('createdAt', 'desc').onSnapshot(snap => {
+                ads = [];
+                snap.forEach(doc => {
+                    ads.push({ id: doc.id, ...doc.data() });
+                });
+                initAdSlider();
+                renderAdminAdsTable();
+            });
+        }
 
         function initAdSlider() {
             const sliderBox = document.getElementById("adSliderBox");
@@ -1357,6 +1322,7 @@
                 sliderBox.prepend(slide);
             });
 
+            currentAdIdx = 0;
             document.getElementById('adTitleText').innerText = ads[0].title;
             document.getElementById('adPhoneText').innerHTML = `<i class="fa-brands fa-whatsapp"></i> ${ads[0].phone}`;
 
@@ -1378,7 +1344,18 @@
             renderProducts();
         }
 
-        // Render Products Grid
+        // ----------------- Realtime Firebase Sync (Products) -----------------
+        function syncProductsFromFirebase() {
+            db.collection('products').orderBy('createdAt', 'desc').onSnapshot(snap => {
+                products = [];
+                snap.forEach(doc => {
+                    products.push({ id: doc.id, ...doc.data() });
+                });
+                renderProducts();
+                renderAdminTable();
+            });
+        }
+
         function renderProducts() {
             const grid = document.getElementById("productGrid");
             let filtered = products;
@@ -1389,7 +1366,7 @@
 
             if (searchQuery !== "") {
                 filtered = filtered.filter(p => 
-                    p.title.toLowerCase().includes(searchQuery) || 
+                    (p.title && p.title.toLowerCase().includes(searchQuery)) || 
                     (p.location && p.location.toLowerCase().includes(searchQuery)) ||
                     (p.seller && p.seller.toLowerCase().includes(searchQuery))
                 );
@@ -1402,16 +1379,18 @@
 
             grid.innerHTML = filtered.map(item => {
                 const calc = calculateFinalPrice(item.basePrice);
-                const dots = item.images.length > 1 ? `
+                const dots = (item.images && item.images.length > 1) ? `
                     <div class="slider-nav">
-                        ${item.images.map((im, i) => `<span class="slider-dot ${i===0?'active':''}" onclick="switchCardImg(${item.id}, '${im}', this)"></span>`).join('')}
+                        ${item.images.map((im, i) => `<span class="slider-dot ${i===0?'active':''}" onclick="switchCardImg('${item.id}', '${im}', this)"></span>`).join('')}
                     </div>
                 ` : '';
+
+                const firstImg = (item.images && item.images.length > 0) ? item.images[0] : 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=500';
 
                 return `
                     <div class="card">
                         <div class="card-img-slider">
-                            <img id="card-img-${item.id}" src="${item.images[0]}" alt="${item.title}">
+                            <img id="card-img-${item.id}" src="${firstImg}" alt="${item.title}">
                             ${dots}
                         </div>
                         <div class="card-body">
@@ -1558,7 +1537,7 @@
             document.getElementById("userAdForm").reset();
         }
 
-        // ----------------- Customer Feedback Implementation -----------------
+        // ----------------- Customer Feedback Realtime Sync -----------------
         document.querySelectorAll('#userRatingPicker i').forEach(star => {
             star.addEventListener('click', function() {
                 currentRatingVal = parseInt(this.getAttribute('data-v'));
@@ -1588,7 +1567,6 @@
                 alert("ඔබගේ වටිනා අදහස ලැබුණා. ස්තුතියි!");
                 closeModal('userFeedbackModal');
 
-                // Dual WhatsApp Alert on Feedback
                 const fbAlertMsg = encodeURIComponent(`📢 *නව Customer Feedback එකක්!*\n\n👤 නම: ${name}\n⭐ Ratings: ${currentRatingVal}/5\n💬 අදහස: ${msg}`);
                 window.open(`https://wa.me/${settings.whatsapp}?text=${fbAlertMsg}`, '_blank');
 
@@ -1654,7 +1632,7 @@
             }
         }
 
-        // ----------------- Admin Operations -----------------
+        // ----------------- Admin Operations (Firestore Driven) -----------------
         function checkAdminLogin() {
             const currentPass = settings.adminPass || DEFAULT_PASS;
             const pass = prompt("Admin මුරපදය (Password) ඇතුළත් කරන්න:");
@@ -1690,11 +1668,13 @@
                 return;
             }
 
-            settings.adminPass = newP;
-            localStorage.setItem('edo_settings', JSON.stringify(settings));
-            alert("Admin Password එක සාර්ථකව වෙනස් කරන ලදී!");
-            document.getElementById('currentPassInput').value = '';
-            document.getElementById('newPassInput').value = '';
+            db.collection('settings').doc('general_config').update({
+                adminPass: newP
+            }).then(() => {
+                alert("Admin Password එක සාර්ථකව වෙනස් කරන ලදී!");
+                document.getElementById('currentPassInput').value = '';
+                document.getElementById('newPassInput').value = '';
+            }).catch(err => alert("දෝෂයක්: " + err.message));
         }
 
         async function adminSaveBranding() {
@@ -1702,16 +1682,16 @@
             const wa = document.getElementById('admWaNumber').value.trim();
             const logoFile = document.getElementById('admLogoFile').files[0];
 
-            settings.theme = theme;
-            if (wa) settings.whatsapp = wa;
+            let updatePayload = { theme: theme };
+            if (wa) updatePayload.whatsapp = wa;
 
             if (logoFile) {
-                settings.logoImg = await fileToBase64(logoFile);
+                updatePayload.logoImg = await fileToBase64(logoFile);
             }
 
-            localStorage.setItem('edo_settings', JSON.stringify(settings));
-            updateUIWithSettings();
-            alert("Theme සහ Logo සාර්ථකව Update විය!");
+            db.collection('settings').doc('general_config').update(updatePayload)
+                .then(() => alert("Theme සහ Logo සාර්ථකව Firebase හි Update විය!"))
+                .catch(err => alert("දෝෂයක්: " + err.message));
         }
 
         function adminSaveSettings() {
@@ -1723,17 +1703,17 @@
             const bank = document.getElementById('admBankInput').value;
             const announcement = document.getElementById('admAnnouncementInput').value;
 
-            settings.regFee = regFee;
-            settings.adFee = adFee;
-            settings.discount2 = disc2;
-            settings.discount3 = disc3;
-            settings.shop2Whatsapp = shop2Wa;
-            settings.bankDetails = bank;
-            settings.announcement = announcement;
-
-            localStorage.setItem('edo_settings', JSON.stringify(settings));
-            updateUIWithSettings();
-            alert("සියලු ගාස්තු, WhatsApp අංක සහ බැංකු විස්තර සාර්ථකව Update විය!");
+            db.collection('settings').doc('general_config').update({
+                regFee: regFee,
+                adFee: adFee,
+                discount2: disc2,
+                discount3: disc3,
+                shop2Whatsapp: shop2Wa,
+                bankDetails: bank,
+                announcement: announcement
+            }).then(() => {
+                alert("සියලු ගාස්තු, WhatsApp අංක සහ බැංකු විස්තර Firebase වෙත Auto-Save විය!");
+            }).catch(err => alert("දෝෂයක්: " + err.message));
         }
 
         function renderAdminAdsTable() {
@@ -1742,32 +1722,31 @@
                 tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;color:#888;">කිසිදු දැන්වීමක් නැත.</td></tr>`;
                 return;
             }
-            tbody.innerHTML = ads.map((item, idx) => `
+            tbody.innerHTML = ads.map(item => `
                 <tr>
                     <td>${item.title}</td>
                     <td>${item.phone}</td>
-                    <td><button onclick="adminDeleteAd(${idx})" class="btn-del"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><button onclick="adminDeleteAd('${item.id}')" class="btn-del"><i class="fa-solid fa-trash"></i></button></td>
                 </tr>
             `).join('');
         }
 
-        function adminDeleteAd(idx) {
+        function adminDeleteAd(docId) {
             if (confirm("මෙම දැන්වීම ඉවත් කිරීමට ඔබට සහතිකද?")) {
-                ads.splice(idx, 1);
-                localStorage.setItem('edo_ads', JSON.stringify(ads));
-                initAdSlider();
-                renderAdminAdsTable();
+                db.collection('ads').doc(docId).delete()
+                    .then(() => alert("දැන්වීම ඉවත් කරන ලදී!"))
+                    .catch(err => alert("දෝෂයක්: " + err.message));
             }
         }
 
         function renderAdminTable() {
             const tbody = document.getElementById("adminTableBody");
-            tbody.innerHTML = products.map((item, idx) => `
+            tbody.innerHTML = products.map(item => `
                 <tr>
                     <td>${item.title}</td>
                     <td>${item.location || '-'}</td>
                     <td>Rs. ${item.basePrice}</td>
-                    <td><button onclick="adminDeleteProduct(${idx})" class="btn-del"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><button onclick="adminDeleteProduct('${item.id}')" class="btn-del"><i class="fa-solid fa-trash"></i></button></td>
                 </tr>
             `).join('');
         }
@@ -1783,19 +1762,17 @@
             }
 
             const imgBase64 = await fileToBase64(file);
-            ads.unshift({
+            db.collection('ads').add({
                 img: imgBase64,
                 title: title,
-                phone: phone || settings.whatsapp
-            });
-
-            localStorage.setItem('edo_ads', JSON.stringify(ads));
-            initAdSlider();
-            renderAdminAdsTable();
-            alert("දැන්වීම සාර්ථකව Auto-Play එකට එක් විය!");
-            document.getElementById("adAdminTitle").value = '';
-            document.getElementById("adAdminPhone").value = '';
-            document.getElementById("adAdminFile").value = '';
+                phone: phone || settings.whatsapp,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                alert("දැන්වීම Firebase වෙත Auto-Save වී Live විය!");
+                document.getElementById("adAdminTitle").value = '';
+                document.getElementById("adAdminPhone").value = '';
+                document.getElementById("adAdminFile").value = '';
+            }).catch(err => alert("දෝෂයක්: " + err.message));
         }
 
         async function adminPublishProduct() {
@@ -1817,81 +1794,36 @@
                 imgArray.push(b64);
             }
 
-            products.unshift({
-                id: Date.now(),
+            db.collection('products').add({
                 title: title,
                 category: cat,
                 seller: seller || "EDO Verified",
                 location: location || "ශ්‍රී ලංකාව",
                 basePrice: price,
-                images: imgArray
-            });
-
-            localStorage.setItem('edo_products', JSON.stringify(products));
-            renderProducts();
-            renderAdminTable();
-            alert("භාණ්ඩය සාර්ථකව Live කරන ලදී!");
-            
-            document.getElementById("admPTitle").value = '';
-            document.getElementById("admPSeller").value = '';
-            document.getElementById("admPLocation").value = '';
-            document.getElementById("admPPrice").value = '';
-            document.getElementById("admPFiles").value = '';
+                images: imgArray,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                alert("භාණ්ඩය Firebase වෙත Auto-Save වී සජීවීව Live විය!");
+                document.getElementById("admPTitle").value = '';
+                document.getElementById("admPSeller").value = '';
+                document.getElementById("admPLocation").value = '';
+                document.getElementById("admPPrice").value = '';
+                document.getElementById("admPFiles").value = '';
+            }).catch(err => alert("දෝෂයක්: " + err.message));
         }
 
-        function adminDeleteProduct(idx) {
+        function adminDeleteProduct(docId) {
             if (confirm("මෙම භාණ්ඩය ඉවත් කිරීමට අවශ්‍යද?")) {
-                products.splice(idx, 1);
-                localStorage.setItem('edo_products', JSON.stringify(products));
-                renderProducts();
-                renderAdminTable();
+                db.collection('products').doc(docId).delete()
+                    .then(() => alert("භාණ්ඩය ඉවත් කරන ලදී!"))
+                    .catch(err => alert("දෝෂයක්: " + err.message));
             }
         }
 
-        // Backup & Restore
-        function adminBackupData() {
-            const data = {
-                settings: settings,
-                ads: ads,
-                products: products
-            };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `edo_backup_${Date.now()}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function adminRestoreData(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const restored = JSON.parse(e.target.result);
-                    if (restored.settings && restored.products) {
-                        localStorage.setItem('edo_settings', JSON.stringify(restored.settings));
-                        localStorage.setItem('edo_ads', JSON.stringify(restored.ads || []));
-                        localStorage.setItem('edo_products', JSON.stringify(restored.products));
-                        alert("දත්ත සාර්ථකව Restore විය! පිටුව Refresh වේ.");
-                        location.reload();
-                    } else {
-                        alert("අවලංගු Backup ගොනුවකි!");
-                    }
-                } catch (err) {
-                    alert("Backup ගොනුව කියවීමට නොහැකි විය!");
-                }
-            };
-            reader.readAsText(file);
-        }
-
         // ----------------- Initialization -----------------
-        updateUIWithSettings();
-        initAdSlider();
-        renderProducts();
+        syncSettingsFromFirebase();
+        syncAdsFromFirebase();
+        syncProductsFromFirebase();
         loadLiveFeedbacks();
 
         window.onclick = function(e) {
