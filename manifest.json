@@ -1,8 +1,8 @@
 {
   "name": "EDO Entrepreneur",
   "short_name": "EDO App",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/My-store-/",
+  "scope": "/My-store-/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1b5e20",
