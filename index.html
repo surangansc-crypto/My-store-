@@ -12,7 +12,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="EDO App">
 
-    <!-- Built-in PWA Web App Manifest -->
+    <!-- Auto Inline PWA Manifest (වෙනම manifest.json ගොනු අවශ්‍ය නොවේ) -->
     <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22EDO%20Entrepreneur%22%2C%22short_name%22%3A%22EDO%20App%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%231b5e20%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1542838132-92c53300491e%3Fw%3D192%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
 
     <!-- Google Fonts & Font Awesome Icons -->
@@ -681,7 +681,6 @@
 </head>
 <body>
 
-    <!-- Top Contact Bar -->
     <div class="top-bar">
         <span><i class="fa-solid fa-leaf"></i> දේශීය ව්‍යවසායකයින් සහ ස්වයං රැකියා ජාලය</span>
         <a href="https://wa.me/94784693750" target="_blank" id="topWaLink">
@@ -689,12 +688,10 @@
         </a>
     </div>
 
-    <!-- Active Discount Announcement Banner -->
     <div class="discount-announcement-bar" id="topDiscountBanner">
         <i class="fa-solid fa-gift"></i> <span id="announcementText">විශේෂ දීමනාව: දැන්වීම් සහ ලියාපදිංචි කිරීම් සඳහා විශේෂ වට්ටම් ලබාගන්න!</span>
     </div>
 
-    <!-- Header -->
     <header>
         <div class="header-content">
             <a href="#" class="logo-area">
@@ -720,7 +717,6 @@
         </div>
     </header>
 
-    <!-- Auto-Playing Ad Banner Section -->
     <section class="ad-slider-section">
         <div class="ad-slider-box" id="adSliderBox">
             <div class="ad-overlay">
@@ -735,7 +731,6 @@
         </div>
     </section>
 
-    <!-- Hero Banner -->
     <section class="hero" id="heroSection">
         <h2>දේශීය ස්වයං රැකියා හා නිෂ්පාදන වෙළඳපොළ</h2>
         <p>නිවසේදීම සාදන ඕනෑම ස්වයං රැකියා නිපැයුමක් අදම ලියාපදිංචි කර දිවයින පුරා පාරිභෝගිකයන් අතරට පහසුවෙන්ම ගෙනයන්න.</p>
@@ -746,7 +741,6 @@
         </div>
     </section>
 
-    <!-- Live Search Bar -->
     <section class="search-section">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -754,9 +748,7 @@
         </div>
     </section>
 
-    <!-- Main Content Area -->
     <main class="main-container">
-        <!-- Categories Bar -->
         <div class="sec-header">
             <div class="sec-title"><i class="fa-solid fa-boxes-stacked"></i> නිෂ්පාදන කාණ්ඩ</div>
         </div>
@@ -770,16 +762,14 @@
             <button class="cat-btn" onclick="filterCategory('ගෘහස්ත නිෂ්පාදන', this)">ගෘහස්ත භාණ්ඩ</button>
         </div>
 
-        <!-- Product Grid -->
         <div class="sec-header">
             <div class="sec-title"><i class="fa-solid fa-store"></i> ලබාගත හැකි නිෂ්පාදන</div>
         </div>
 
         <div class="products-grid" id="productGrid">
-            <!-- Dynamic Products Loaded from Firebase Firestore -->
+            <!-- Dynamic Products -->
         </div>
 
-        <!-- Live Customer Feedback Section -->
         <section class="feedback-section">
             <div class="sec-header" style="border-bottom:none; margin-bottom: 8px;">
                 <div class="sec-title" style="font-size: 1.15rem;"><i class="fa-solid fa-star" style="color:var(--gold);"></i> පාරිභෝගික ප්‍රතිචාර (Customer Feedbacks)</div>
@@ -788,13 +778,10 @@
                 </button>
             </div>
             <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 15px;">අපගේ පාරිභෝගිකයින් සහ නිෂ්පාදකයින් සේවාව පිළිබඳ දක්වන ලද අදහස්:</p>
-            <div id="liveFeedbackContainer">
-                <!-- Feedbacks load here -->
-            </div>
+            <div id="liveFeedbackContainer"></div>
         </section>
     </main>
 
-    <!-- Floating WhatsApp -->
     <a href="https://wa.me/94784693750?text=Hello%20EDO%20Entrepreneur,%20මට%20විස්තර%20දැනගැනීමට%20අවශ්‍යයි." target="_blank" class="float-wa" id="floatingWaLink" title="WhatsApp මඟින් සම්බන්ධ වන්න">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
@@ -953,14 +940,14 @@
         </div>
     </div>
 
-    <!-- Modal 3: Complete Mega Admin Panel -->
+    <!-- Modal 3: Mega Admin Panel -->
     <div class="modal" id="adminModal">
         <div class="modal-content" style="max-width: 740px;">
             <span class="modal-close" onclick="closeModal('adminModal')">&times;</span>
             <h3 style="color: var(--primary-color);"><i class="fa-solid fa-gauge"></i> Mega Admin Dashboard</h3>
             <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 15px;">කෝඩ් එකට නොගොස් මුළු වෙබ් අඩවියම මෙතැනින් පාලනය කරන්න.</p>
 
-            <!-- Admin Section 1: Security & Password Change -->
+            <!-- Admin Section 1: Security -->
             <div style="background: #fef2f2; border: 1px solid #fecaca; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
                 <h4 style="color: #991b1b; font-size: 0.92rem; margin-bottom: 6px;"><i class="fa-solid fa-key"></i> Admin Password එක වෙනස් කරන්න:</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -972,12 +959,12 @@
                 </div>
             </div>
 
-            <!-- Admin Section 2: Branding, Logo & Theme Colors -->
+            <!-- Admin Section 2: Branding -->
             <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
                 <h4 style="color: var(--primary-color); font-size: 0.92rem; margin-bottom: 6px;"><i class="fa-solid fa-palette"></i> වෙබ් අඩවියේ Profile / Logo සහ Theme Color:</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
                     <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">Theme Color (වෙබ් පිටුවේ පාට):</label>
+                        <label style="font-size: 0.75rem; font-weight:600;">Theme Color:</label>
                         <select id="admThemeSelect" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%;">
                             <option value="green">ස්වභාවික කොළ පැහැය (Default Green)</option>
                             <option value="blue">රාජකීය නිල් පැහැය (Royal Blue)</option>
@@ -986,11 +973,11 @@
                         </select>
                     </div>
                     <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">ප්‍රධාන WhatsApp අංකය (Main):</label>
+                        <label style="font-size: 0.75rem; font-weight:600;">ප්‍රධාන WhatsApp අංකය:</label>
                         <input type="text" id="admWaNumber" placeholder="94784693750" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%;">
                     </div>
                     <div style="grid-column: 1/-1;">
-                        <label style="font-size: 0.75rem; font-weight:600;">Logo / Profile Photo එක Gallery එකෙන් තෝරන්න:</label>
+                        <label style="font-size: 0.75rem; font-weight:600;">Logo Photo (Gallery එකෙන්):</label>
                         <input type="file" id="admLogoFile" accept="image/*" style="width:100%; padding: 4px;">
                     </div>
                     <button onclick="adminSaveBranding()" class="btn-main" style="grid-column: 1/-1; justify-content:center; padding: 7px;">
@@ -999,7 +986,7 @@
                 </div>
             </div>
 
-            <!-- Admin Section 3: Bank Details, Rates & Dual WhatsApp -->
+            <!-- Admin Section 3: Rates, Banks & Dual WhatsApp -->
             <div style="background: #eef2ff; border: 1px solid #c7d2fe; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
                 <h4 style="color: #3730a3; font-size: 0.92rem; margin-bottom: 6px;"><i class="fa-solid fa-building-columns"></i> ගාස්තු, බැංකු විස්තර, Discounts සහ 2nd WhatsApp:</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -1024,15 +1011,15 @@
                         <input type="text" id="admShop2WaNumber" placeholder="9477xxxxxxx" style="padding: 7px; border: 1px solid #93c5fd; border-radius: 6px;">
                     </div>
                     <div style="grid-column: 1/-1;">
-                        <label style="font-size: 0.75rem; font-weight:600;">බැංකු ගිණුම් විස්තරය (Bank, Acc No, Name):</label>
+                        <label style="font-size: 0.75rem; font-weight:600;">බැංකු ගිණුම් විස්තරය:</label>
                         <input type="text" id="admBankInput" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
                     </div>
                     <div style="grid-column: 1/-1;">
-                        <label style="font-size: 0.75rem; font-weight:600;">Top Bar Announcement Text:</label>
+                        <label style="font-size: 0.75rem; font-weight:600;">Announcement Bar Text:</label>
                         <input type="text" id="admAnnouncementInput" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
                     </div>
                     <button onclick="adminSaveSettings()" class="btn-main" style="grid-column: 1/-1; background:#4338ca; justify-content:center; padding: 8px;">
-                        <i class="fa-solid fa-floppy-disk"></i> සියලු ගාස්තු, WhatsApp අංක සහ බැංකු විස්තර Update කරන්න
+                        <i class="fa-solid fa-floppy-disk"></i> සියලු ගාස්තු සහ WhatsApp අංක Update කරන්න
                     </button>
                 </div>
             </div>
@@ -1111,7 +1098,7 @@
                 </table>
             </div>
 
-            <!-- Admin Section 9: Customer Feedback Manager with Delete -->
+            <!-- Admin Section 9: Customer Feedback Manager -->
             <div style="background: #fff; border: 1px solid #cbd5e1; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
                 <h4 style="color: var(--primary-color); font-size: 0.88rem; margin-bottom: 6px;">
                     <i class="fa-solid fa-comments"></i> පාරිභෝගික Feedbacks කළමනාකරණය (Delete Options):
@@ -1126,7 +1113,7 @@
 
     <!-- Scripts Logic -->
     <script>
-        // ----------------- Service Worker (Auto Inline Registration) -----------------
+        // ----------------- Service Worker (Inline Auto Registration) -----------------
         if ('serviceWorker' in navigator) {
             const swCode = `
                 self.addEventListener('install', (e) => self.skipWaiting());
@@ -1193,7 +1180,6 @@
         let searchQuery = "";
         let currentRatingVal = 5;
 
-        // File to Base64
         function fileToBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -1203,7 +1189,6 @@
             });
         }
 
-        // Apply Dynamic Theme Colors
         function applyTheme(colorKey) {
             const root = document.documentElement;
             if (colorKey === "blue") {
@@ -1632,7 +1617,7 @@
             }
         }
 
-        // ----------------- Admin Operations (Firestore Driven) -----------------
+        // ----------------- Admin Operations -----------------
         function checkAdminLogin() {
             const currentPass = settings.adminPass || DEFAULT_PASS;
             const pass = prompt("Admin මුරපදය (Password) ඇතුළත් කරන්න:");
