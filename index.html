@@ -22,10 +22,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Firebase SDK (Firestore) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-
     <style>
         :root {
             --primary-color: #1b5e20;
@@ -56,10 +52,8 @@
             color: var(--dark);
             line-height: 1.6;
             padding-bottom: 70px;
-            transition: background 0.3s ease;
         }
 
-        /* Top Bar */
         .top-bar {
             background: var(--primary-color);
             color: var(--white);
@@ -92,10 +86,8 @@
             gap: 8px;
         }
 
-        /* Sticky Header */
         header {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.98);
             border-bottom: 2px solid var(--border-color);
             position: sticky;
             top: 0;
@@ -184,7 +176,6 @@
         .btn-cart-head {
             background: #e11d48;
             color: #fff;
-            position: relative;
         }
 
         .cart-badge {
@@ -209,16 +200,23 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            animation: pulseBtn 2s infinite;
         }
 
-        @keyframes pulseBtn {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.04); }
-            100% { transform: scale(1); }
+        .btn-admin-icon {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            padding: 7px 11px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        /* Banner Ads Slider */
+        /* Banner Slider */
         .ad-slider-section {
             max-width: 1200px;
             margin: 15px auto 0;
@@ -230,7 +228,7 @@
             border-radius: 14px;
             overflow: hidden;
             position: relative;
-            height: 180px;
+            height: 190px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.12);
         }
 
@@ -250,7 +248,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.85;
+            opacity: 0.88;
         }
 
         .ad-overlay {
@@ -265,14 +263,16 @@
         }
 
         .ad-info h4 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #fff;
             margin-bottom: 2px;
+            text-shadow: 1px 1px 3px #000;
         }
 
         .ad-info p {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #ffeb3b;
+            text-shadow: 1px 1px 3px #000;
         }
 
         .btn-add-ad-banner {
@@ -291,7 +291,7 @@
 
         /* Hero */
         .hero {
-            background: linear-gradient(rgba(27, 94, 32, 0.88), rgba(46, 125, 50, 0.88)), url('https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1600&q=80');
+            background: linear-gradient(rgba(27, 94, 32, 0.9), rgba(46, 125, 50, 0.9)), url('https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
             color: var(--white);
@@ -332,7 +332,6 @@
             border: 1px solid rgba(255, 255, 255, 0.35);
         }
 
-        /* Search Section */
         .search-section {
             max-width: 1200px;
             margin: 15px auto 0;
@@ -364,7 +363,6 @@
             color: #94a3b8;
         }
 
-        /* Main Container */
         .main-container {
             max-width: 1200px;
             margin: 20px auto;
@@ -414,7 +412,7 @@
             border-color: var(--primary-color);
         }
 
-        /* Mobile 2-Column Responsive Grid */
+        /* 2-Column Mobile Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -434,35 +432,17 @@
             }
             .card-title {
                 font-size: 0.85rem !important;
-                height: 2.4em;
-                overflow: hidden;
-            }
-            .card-meta {
-                font-size: 0.72rem !important;
-            }
-            .price-breakdown {
-                font-size: 0.7rem !important;
-                padding: 4px 6px !important;
-            }
-            .card-btns-grid {
-                grid-template-columns: 1fr !important;
-                gap: 4px !important;
-            }
-            .btn-card-action {
-                padding: 6px !important;
-                font-size: 0.75rem !important;
             }
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.98);
+            background: #ffffff;
             border-radius: 12px;
             border: 1px solid var(--border-color);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            position: relative;
         }
 
         .card-img-slider {
@@ -470,7 +450,6 @@
             width: 100%;
             position: relative;
             background: #eee;
-            overflow: hidden;
         }
 
         .card-img-slider img {
@@ -546,62 +525,9 @@
             color: #111;
         }
 
-        .btn-req-call {
-            background: #0284c7;
-            color: #fff;
-        }
-
-        .btn-direct-msg {
-            background: #8b5cf6;
-            color: #fff;
-        }
-
         .btn-order-direct {
             background: #25d366;
             color: #fff;
-            grid-column: 1 / -1;
-        }
-
-        /* Feedback Section */
-        .feedback-section {
-            background: rgba(255, 255, 255, 0.97);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            padding: 18px;
-            margin-top: 30px;
-        }
-
-        .feedback-item {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--primary-color);
-            border-radius: 8px;
-            padding: 10px 14px;
-            margin-bottom: 10px;
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-        }
-
-        .feedback-img {
-            width: 55px;
-            height: 55px;
-            border-radius: 6px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .star-picker {
-            display: flex;
-            gap: 5px;
-            font-size: 1.4rem;
-            color: #cbd5e1;
-            cursor: pointer;
-            margin: 6px 0 10px;
-        }
-
-        .star-picker .fa-star.active {
-            color: var(--gold);
         }
 
         /* Modals */
@@ -617,12 +543,11 @@
 
         .modal-content {
             background: var(--white);
-            max-width: 620px;
+            max-width: 650px;
             margin: 20px auto;
             border-radius: 12px;
             padding: 20px;
             position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .modal-close {
@@ -656,41 +581,20 @@
             background: #f8fafc;
         }
 
-        .calc-preview {
-            background: var(--light-bg);
-            padding: 8px 10px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            font-size: 0.8rem;
-        }
-
-        .bank-info-box {
-            background: #f0fdf4;
-            border: 1px dashed var(--accent-color);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            font-size: 0.8rem;
-            color: #14532d;
-        }
-
         .admin-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 8px;
             font-size: 0.8rem;
         }
 
         .admin-table th, .admin-table td {
             border: 1px solid #e2e8f0;
-            padding: 7px;
+            padding: 6px;
             text-align: left;
-            vertical-align: middle;
         }
 
-        .admin-table th {
-            background: #f1f5f9;
-        }
+        .admin-table th { background: #f1f5f9; }
 
         .btn-del {
             background: #ef4444;
@@ -699,33 +603,6 @@
             padding: 4px 8px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.75rem;
-        }
-
-        /* Cart Floating Button & Bar */
-        .cart-float-bar {
-            position: fixed;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #111827;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 30px;
-            display: none;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            z-index: 1500;
-            font-size: 0.88rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .cart-float-bar span {
-            background: #e11d48;
-            padding: 2px 8px;
-            border-radius: 12px;
             font-size: 0.75rem;
         }
 
@@ -750,68 +627,66 @@
 <body>
 
     <div class="top-bar">
-        <span><i class="fa-solid fa-shield-halved"></i> 100% Verified දේශීය නිෂ්පාදන</span>
+        <span><i class="fa-solid fa-shield-halved"></i> දේශීය ව්‍යවසායකයින්ගේ නිෂ්පාදන වෙළඳපොළ</span>
         <a href="https://wa.me/94784693750" target="_blank" id="topWaLink">
             <i class="fa-brands fa-whatsapp"></i> <span id="topWaNumber">078 469 3750</span>
         </a>
     </div>
 
-    <div class="discount-announcement-bar" id="topDiscountBanner">
-        <i class="fa-solid fa-gift"></i> <span id="announcementText">විශේෂ දීමනාව: දැන්වීම් සහ ලියාපදිංචි කිරීම් සඳහා විශේෂ වට්ටම් ලබාගන්න!</span>
+    <div class="discount-announcement-bar">
+        <i class="fa-solid fa-gift"></i> <span id="announcementText">විශේෂ දීමනාව: භාණ්ඩ 2කට 15% ක සහ 3කට 25% ක විශේෂ වට්ටමක්!</span>
     </div>
 
     <header>
         <div class="header-content">
             <a href="#" class="logo-area">
-                <div class="logo-badge" id="logoContainer">
+                <div class="logo-badge">
                     <img src="Gemini_Generated_Image_j0n8wuj0n8wuj0n8%20(1).jpeg" alt="EDO Logo">
                 </div>
                 <div class="logo-title">
-                    <h1 id="brandTitle">EDO Entrepreneur</h1>
-                    <span id="brandSub">දේශීය ස්වයං රැකියා වෙළඳපොළ</span>
+                    <h1>EDO Entrepreneur</h1>
+                    <span>දේශීය ස්වයං රැකියා වෙළඳපොළ</span>
                 </div>
             </a>
             <div class="header-btns">
-                <button class="btn-action btn-share" onclick="shareWebsiteLink()" title="Link එක Share කරන්න">
+                <button class="btn-action btn-share" onclick="shareWebsiteLink()">
                     <i class="fa-solid fa-share-nodes"></i> Share
                 </button>
                 <button class="btn-action btn-cart-head" onclick="openCartModal()">
                     <i class="fa-solid fa-cart-shopping"></i> <span class="cart-badge" id="headCartCount">0</span>
                 </button>
-                <button class="btn-app-download" id="btnDownloadApp" onclick="triggerPwaInstall()">
+                <button class="btn-app-download" onclick="triggerPwaInstall()">
                     <i class="fa-solid fa-download"></i> App
                 </button>
-                <button class="btn-action" onclick="openModal('userProdModal')">
-                    <i class="fa-solid fa-plus-circle"></i> ලියාපදිංචිය
-                </button>
-                <button class="btn-action" style="background:#475569;" onclick="checkAdminLogin()">
+                <button class="btn-admin-icon" onclick="openAdminPanel()">
                     <i class="fa-solid fa-user-shield"></i> Admin
                 </button>
             </div>
         </div>
     </header>
 
+    <!-- Auto Play Banner Slider -->
     <section class="ad-slider-section">
         <div class="ad-slider-box" id="adSliderBox">
             <div class="ad-overlay">
                 <div class="ad-info">
                     <h4 id="adTitleText">දේශීය නිෂ්පාදන සහ සේවා ප්‍රචාරණය</h4>
-                    <p id="adPhoneText"><i class="fa-brands fa-whatsapp"></i> දැන්වීම් සඳහා: 0784693750</p>
+                    <p id="adPhoneText"><i class="fa-brands fa-whatsapp"></i> දැන්වීම් සඳහා: 078 469 3750</p>
                 </div>
                 <button class="btn-add-ad-banner" onclick="openModal('userAdModal')">
-                    <i class="fa-solid fa-bullhorn"></i> දැන්වීමක් පළකරන්න (<span id="adFeeBadge">Rs. 1000</span>)
+                    <i class="fa-solid fa-bullhorn"></i> දැන්වීමක් පළකරන්න
                 </button>
             </div>
         </div>
     </section>
 
-    <section class="hero" id="heroSection">
+    <section class="hero">
         <h2>දේශීය ස්වයං රැකියා හා නිෂ්පාදන වෙළඳපොළ</h2>
-        <p>නිවසේදීම සාදන ඕනෑම ස්වයං රැකියා නිපැයුමක් අදම ලියාපදිංචි කර දිවයින පුරා පාරිභෝගිකයන් අතරට පහසුවෙන්ම ගෙනයන්න.</p>
+        <p>නිවසේදීම සාදන ඕනෑම ස්වයං රැකියා නිපැයුමක් අදම ලියාපදිංචි කර දිවයින පුරා පාරිභෝගිකයන් අතරට ගෙනයන්න.</p>
         <div class="hero-badges">
-            <div class="badge-pill"><i class="fa-solid fa-check"></i> ලියාපදිංචි ගාස්තුව: <span id="heroRegFee">රු. 1500</span></div>
-            <div class="badge-pill"><i class="fa-solid fa-percent"></i> 10% සහනදායී සේවා ගාස්තුවක්</div>
-            <div class="badge-pill" style="cursor:pointer;" onclick="shareWebsiteLink()"><i class="fa-solid fa-share-nodes"></i> Share App Link</div>
+            <div class="badge-pill"><i class="fa-solid fa-check"></i> ලියාපදිංචිය: <span id="heroRegFee">රු. 1500</span></div>
+            <div class="badge-pill"><i class="fa-solid fa-percent"></i> 10% සේවා ගාස්තුවක්</div>
+            <div class="badge-pill" style="cursor:pointer;" onclick="shareWebsiteLink()"><i class="fa-solid fa-share-nodes"></i> Share Link</div>
         </div>
     </section>
 
@@ -824,544 +699,209 @@
 
     <main class="main-container">
         <div class="sec-header">
-            <div class="sec-title"><i class="fa-solid fa-boxes-stacked"></i> නිෂ්පාදන කාණ්ඩ</div>
-        </div>
-
-        <div class="categories-wrapper">
-            <button class="cat-btn active" onclick="filterCategory('All', this)">සියල්ල (All)</button>
-            <button class="cat-btn" onclick="filterCategory('ආහාර හා පාන', this)">ආහාර හා පාන</button>
-            <button class="cat-btn" onclick="filterCategory('අත්කම් නිර්මාණ', this)">අත්කම් නිර්මාණ</button>
-            <button class="cat-btn" onclick="filterCategory('කාබනික හා පැළෑටි', this)">කාබනික නිෂ්පාදන</button>
-            <button class="cat-btn" onclick="filterCategory('ඇඳුම් හා රෙදිපිළි', this)">ඇඳුම් නිර්මාණ</button>
-            <button class="cat-btn" onclick="filterCategory('ගෘහස්ත නිෂ්පාදන', this)">ගෘහස්ත භාණ්ඩ</button>
-        </div>
-
-        <div class="sec-header">
             <div class="sec-title"><i class="fa-solid fa-store"></i> ලබාගත හැකි නිෂ්පාදන</div>
         </div>
-
-        <div class="products-grid" id="productGrid">
-            <!-- Dynamic 2-Column Mobile Products Loaded from Firebase -->
-        </div>
-
-        <section class="feedback-section">
-            <div class="sec-header" style="border-bottom:none; margin-bottom: 8px;">
-                <div class="sec-title" style="font-size: 1.15rem;"><i class="fa-solid fa-star" style="color:var(--gold);"></i> පාරිභෝගික ප්‍රතිචාර (Customer Feedbacks)</div>
-                <button class="btn-action" onclick="openModal('userFeedbackModal')" style="padding: 6px 12px; font-size: 0.8rem;">
-                    <i class="fa-solid fa-pen"></i> අදහසක් ලියන්න
-                </button>
-            </div>
-            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 15px;">පාරිභෝගිකයින් සේවාව පිළිබඳ දැක්වූ අදහස් සහ සැබෑ ඡායාරූප:</p>
-            <div id="liveFeedbackContainer"></div>
-        </section>
+        <div class="products-grid" id="productGrid"></div>
     </main>
 
-    <!-- Floating Cart Bar -->
-    <div class="cart-float-bar" id="cartFloatBar" onclick="openCartModal()">
-        <div><i class="fa-solid fa-basket-shopping"></i> Shopping Cart: <span id="floatCartCount">0</span> Items</div>
-        <div id="floatCartTotal">Rs. 0</div>
-    </div>
-
-    <a href="https://wa.me/94784693750?text=Hello%20EDO%20Entrepreneur,%20මට%20විස්තර%20දැනගැනීමට%20අවශ්‍යයි." target="_blank" class="float-wa" id="floatingWaLink">
+    <a href="https://wa.me/94784693750?text=Hello%20EDO%20Entrepreneur,%20මට%20විස්තර%20දැනගැනීමට%20අවශ්‍යයි." target="_blank" class="float-wa">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Modal: Cart & Checkout -->
+    <!-- Modal: Cart -->
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('cartModal')">&times;</span>
-            <h3 style="color: #e11d48; margin-bottom: 8px;"><i class="fa-solid fa-cart-shopping"></i> ඔබේ Shopping Cart එක</h3>
+            <h3 style="color: #e11d48; margin-bottom: 8px;"><i class="fa-solid fa-cart-shopping"></i> Shopping Cart</h3>
             <div id="cartItemsList" style="max-height: 240px; overflow-y:auto; margin-bottom: 12px;"></div>
-            <div style="border-top: 2px dashed #cbd5e1; padding-top: 10px; display:flex; justify-content:space-between; font-weight:800; font-size:1.05rem;">
+            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.05rem; border-top:1px dashed #ccc; padding-top:8px;">
                 <span>මුළු එකතුව:</span>
                 <span id="cartModalTotal" style="color:var(--primary-color);">Rs. 0</span>
             </div>
-            <div class="form-group" style="margin-top: 14px;">
+            <div class="form-group" style="margin-top:10px;">
                 <label>ඔබගේ නම:</label>
-                <input type="text" id="cartBuyerName" placeholder="උදා: සුරංග">
+                <input type="text" id="cartBuyerName" placeholder="නම">
             </div>
             <div class="form-group">
-                <label>බෙදාහැරිය යුතු ලිපිනය සහ නගරය:</label>
-                <input type="text" id="cartBuyerAddress" placeholder="උදා: නො: 12, කුරුවිට">
+                <label>ලිපිනය සහ නගරය:</label>
+                <input type="text" id="cartBuyerAddress" placeholder="නො: 12, කුරුවිට">
             </div>
-            <div class="form-group">
-                <label>දුරකථන අංකය:</label>
-                <input type="tel" id="cartBuyerPhone" placeholder="07xxxxxxxx">
-            </div>
-            <button onclick="checkoutCartToWhatsApp()" class="btn-action" style="background:#25d366; width:100%; justify-content:center; padding:11px; font-size:0.95rem;">
-                <i class="fa-brands fa-whatsapp"></i> ඇණවුම WhatsApp මඟින් තහවුරු කරන්න
+            <button onclick="checkoutCartToWhatsApp()" class="btn-action" style="background:#25d366; width:100%; justify-content:center; padding:10px;">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp ඇණවුම යවන්න
             </button>
         </div>
     </div>
 
-    <!-- Modal: Direct Inquiry Message -->
-    <div class="modal" id="directMsgModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('directMsgModal')">&times;</span>
-            <h3 style="color: #8b5cf6; margin-bottom: 4px;"><i class="fa-solid fa-envelope"></i> භාණ්ඩය පිළිබඳ විමසීමක්</h3>
-            <p style="font-size:0.8rem; color:#64748b; margin-bottom: 12px;">ඔබගේ පණිවිඩය සෘජුවම Admin සහ සම්බන්ධීකාරක වෙත යොමු වේ.</p>
-            <input type="hidden" id="inqProdTitle">
-            <div class="form-group">
-                <label>ඔබගේ නම:</label>
-                <input type="text" id="inqSenderName" required placeholder="ඔබගේ නම">
-            </div>
-            <div class="form-group">
-                <label>ඔබගේ දුරකථන අංකය:</label>
-                <input type="tel" id="inqSenderPhone" required placeholder="07xxxxxxxx">
-            </div>
-            <div class="form-group">
-                <label>විමසීම / පණිවිඩය:</label>
-                <textarea id="inqSenderMsg" rows="3" required placeholder="මට මෙම භාණ්ඩය ගැන විස්තර දැනගැනීමට අවශ්‍යයි..."></textarea>
-            </div>
-            <button onclick="submitDirectInquiry()" class="btn-action" style="background:#8b5cf6; width:100%; justify-content:center; padding:10px;">
-                <i class="fa-solid fa-paper-plane"></i> පණිවිඩය යවන්න
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal: Call Request Prompt -->
-    <div class="modal" id="callReqModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('callReqModal')">&times;</span>
-            <h3 style="color: #0284c7; margin-bottom: 4px;"><i class="fa-solid fa-phone-volume"></i> ඇමතුමක් ඉල්ලුම් කරන්න</h3>
-            <p style="font-size:0.8rem; color:#64748b; margin-bottom: 10px;">අංකය ඇතුළත් කළ පසු Admin ඔබව කෙටි වේලාවකින් සම්බන්ධ කරගනු ඇත.</p>
-            <input type="hidden" id="callProdTitle">
-            <div class="form-group">
-                <label>ඔබගේ නම:</label>
-                <input type="text" id="callReqName" required placeholder="නම">
-            </div>
-            <div class="form-group">
-                <label>ඔබගේ දුරකථන අංකය:</label>
-                <input type="tel" id="callReqPhone" required placeholder="07xxxxxxxx">
-            </div>
-            <button onclick="submitCallRequest()" class="btn-action" style="background:#0284c7; width:100%; justify-content:center; padding:10px;">
-                <i class="fa-solid fa-paper-plane"></i> Request Call Alert
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal: User Product Registration -->
-    <div class="modal" id="userProdModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('userProdModal')">&times;</span>
-            <h3 style="color: var(--primary-color); margin-bottom: 4px;">
-                <i class="fa-solid fa-plus-circle"></i> භාණ්ඩය ලියාපදිංචි කරන්න
-            </h3>
-            <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 10px;">
-                මූලික ලියාපදිංචි ගාස්තුව: <b id="modalRegFeeDisplay">රු. 1500/=</b> කි.
-            </p>
-
-            <div class="bank-info-box" id="modalBankDetailsBox">
-                <b><i class="fa-solid fa-building-columns"></i> ගෙවීම් කළ යුතු බැංකු ගිණුම:</b><br>
-                <span id="bankDetailsText">බැංකුව: BOC | ගිණුම් අංකය: 12345678 | නම: EDO Entrepreneur</span>
-            </div>
-
-            <form id="userProdForm" onsubmit="handleUserProdSubmit(event)">
-                <div class="form-group">
-                    <label>නිෂ්පාදකයාගේ නම:</label>
-                    <input type="text" id="upSeller" required placeholder="උදා: සුරංග">
-                </div>
-                <div class="form-group">
-                    <label>නගරය / ප්‍රදේශය (Location):</label>
-                    <input type="text" id="upLocation" required placeholder="උදා: කුරුවිට">
-                </div>
-                <div class="form-group">
-                    <label>WhatsApp අංකය (පිටස්තර අයට නොපෙනේ):</label>
-                    <input type="tel" id="upPhone" required placeholder="07xxxxxxxx">
-                </div>
-                <div class="form-group">
-                    <label>භාණ්ඩ ප්‍රමාණය (Item Count):</label>
-                    <input type="number" id="upItemQty" min="1" value="1" required oninput="updatePricePreview()">
-                </div>
-                <div class="form-group">
-                    <label>භාණ්ඩයේ නම:</label>
-                    <input type="text" id="upTitle" required placeholder="උදා: ස්වභාවික කොළපත් පිඟන්">
-                </div>
-                <div class="form-group">
-                    <label>කාණ්ඩය:</label>
-                    <select id="upCat" required>
-                        <option value="ආහාර හා පාන">ආහාර හා පාන</option>
-                        <option value="අත්කම් නිර්මාණ">අත්කම් නිර්මාණ</option>
-                        <option value="කාබනික හා පැළෑටි">කාබනික හා පැළෑටි</option>
-                        <option value="ඇඳුම් හා රෙදිපිළි">ඇඳුම් හා රෙදිපිළි</option>
-                        <option value="ගෘහස්ත නිෂ්පාදන">ගෘහස්ත නිෂ්පාදන</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>නියම මිල (රු.):</label>
-                    <input type="number" id="upPrice" required placeholder="උදා: 1000" oninput="updatePricePreview()">
-                </div>
-                <div class="calc-preview" id="pricePreview"></div>
-                <div class="form-group">
-                    <label><i class="fa-solid fa-images"></i> Photos 1-3ක් තෝරන්න (Gallery):</label>
-                    <input type="file" id="upPhotos" accept="image/*" multiple required>
-                </div>
-                <button type="submit" class="btn-action" style="background:#25d366; width: 100%; justify-content: center; padding: 11px; font-size: 0.95rem;">
-                    <i class="fa-brands fa-whatsapp"></i> WhatsApp වෙත යවා ලියාපදිංචි වන්න
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal: User Ad Modal -->
+    <!-- Modal: Ad Submission -->
     <div class="modal" id="userAdModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('userAdModal')">&times;</span>
-            <h3 style="color: #b45309; margin-bottom: 4px;"><i class="fa-solid fa-bullhorn"></i> ප්‍රචාරක දැන්වීමක් පළකරන්න</h3>
-            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 10px;">දැන්වීම් ගාස්තුව: <b id="modalAdFeeDisplay">රු. 1000/=</b> කි.</p>
-            <form id="userAdForm" onsubmit="handleUserAdSubmit(event)">
+            <h3 style="color: #b45309; margin-bottom: 8px;"><i class="fa-solid fa-bullhorn"></i> දැන්වීමක් පළකරන්න</h3>
+            <form onsubmit="handleUserAdSubmit(event)">
                 <div class="form-group">
-                    <label>ව්‍යාපාරයේ නම:</label>
-                    <input type="text" id="uaName" required placeholder="උදා: මංජුල මෝටර්ස්">
+                    <label>නම / ව්‍යාපාරය:</label>
+                    <input type="text" id="uaName" required placeholder="නම">
                 </div>
                 <div class="form-group">
-                    <label>WhatsApp අංකය:</label>
+                    <label>දුරකථන අංකය:</label>
                     <input type="tel" id="uaPhone" required placeholder="07xxxxxxxx">
                 </div>
                 <div class="form-group">
                     <label>දැන්වීමේ මාතෘකාව:</label>
-                    <input type="text" id="uaTitle" required placeholder="උදා: සියලුම අමතර කොටස් සහ සේවා">
+                    <input type="text" id="uaTitle" required placeholder="මාතෘකාව">
                 </div>
-                <div class="form-group">
-                    <label>ප්‍රචාරය විය යුතු දින ගණන:</label>
-                    <select id="uaDays" required>
-                        <option value="7">දින 7ක් සඳහා</option>
-                        <option value="14">දින 14ක් සඳහා</option>
-                        <option value="30" selected>දින 30ක් සඳහා</option>
-                        <option value="60">දින 60ක් සඳහා</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Banner Photo (Gallery එකෙන්):</label>
-                    <input type="file" id="uaPhoto" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn-action" style="background:#b45309; width: 100%; justify-content: center; padding: 11px;">
-                    <i class="fa-brands fa-whatsapp"></i> දැන්වීම WhatsApp වෙත යවන්න
+                <button type="submit" class="btn-action" style="background:#b45309; width: 100%; justify-content: center; padding: 10px;">
+                    <i class="fa-brands fa-whatsapp"></i> විස්තර WhatsApp වෙත යවන්න
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- Modal: User Feedback with Photo -->
-    <div class="modal" id="userFeedbackModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('userFeedbackModal')">&times;</span>
-            <h3 style="color: var(--primary-color); margin-bottom: 4px;"><i class="fa-solid fa-comment-dots"></i> ඔබේ අදහස (Customer Feedback)</h3>
-            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 10px;">අදහස සහ ලැබුණු භාණ්ඩයේ Photo එකක් ඇත්නම් එක් කරන්න.</p>
-            <form onsubmit="handleUserFeedbackSubmit(event)">
-                <div class="form-group">
-                    <label>ඔබගේ නම:</label>
-                    <input type="text" id="fbCustName" required placeholder="උදා: සුරංග (කුරුවිට)">
-                </div>
-                <div class="form-group">
-                    <label>අදහස / Review:</label>
-                    <textarea id="fbCustMsg" rows="3" required placeholder="සේවාව ඉතාම හොඳයි..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label><i class="fa-solid fa-camera"></i> Photo එකක් එක් කරන්න (Optional):</label>
-                    <input type="file" id="fbCustPhoto" accept="image/*">
-                </div>
-                <div class="form-group">
-                    <label>තරු අගය කිරීම (Rating):</label>
-                    <div class="star-picker" id="userRatingPicker">
-                        <i class="fa-solid fa-star active" data-v="1"></i>
-                        <i class="fa-solid fa-star active" data-v="2"></i>
-                        <i class="fa-solid fa-star active" data-v="3"></i>
-                        <i class="fa-solid fa-star active" data-v="4"></i>
-                        <i class="fa-solid fa-star active" data-v="5"></i>
-                    </div>
-                </div>
-                <button type="submit" class="btn-action" style="width: 100%; justify-content: center; padding: 10px;">
-                    <i class="fa-solid fa-paper-plane"></i> Review එක පළ කරන්න
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal: Mega Admin Panel -->
+    <!-- Modal: Mega Admin Panel with Password Update -->
     <div class="modal" id="adminModal">
-        <div class="modal-content" style="max-width: 760px;">
+        <div class="modal-content">
             <span class="modal-close" onclick="closeModal('adminModal')">&times;</span>
-            <h3 style="color: var(--primary-color);"><i class="fa-solid fa-gauge"></i> Mega Admin Control Panel</h3>
-            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 12px;">පාරිභෝගික රහස්‍යභාවය, දුරකථන අංක, පසුබිම් රූප සහ පණිවිඩ මෙතැනින් පාලනය කරන්න.</p>
+            <h3 style="color: var(--primary-color); margin-bottom: 4px;"><i class="fa-solid fa-user-shield"></i> Mega Admin Control Panel</h3>
+            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 12px;">Admin මුරපදය සහ සියලු පාලන විකල්ප මෙතැනින් කළමනාකරණය කරන්න.</p>
 
-            <!-- Admin Live Messages Inbox -->
-            <div style="background: #fdf4ff; border: 1px solid #f0abfc; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                <h4 style="color: #86198f; font-size: 0.9rem; margin-bottom: 6px;"><i class="fa-solid fa-inbox"></i> සජීවී පණිවිඩ (Customer Live Inquiries):</h4>
-                <div id="adminInquiriesList" style="max-height: 140px; overflow-y:auto; font-size:0.8rem;"></div>
-            </div>
-
-            <!-- Admin Background Image & Privacy Controls -->
-            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                <h4 style="color: var(--primary-color); font-size: 0.9rem; margin-bottom: 6px;"><i class="fa-solid fa-image"></i> වෙබ් අඩවියේ Background Wallaper & Privacy:</h4>
+            <!-- 1. Password Update Section -->
+            <div style="background: #fef2f2; border: 1px solid #fecaca; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                <h4 style="color: #991b1b; font-size: 0.9rem; margin-bottom: 6px;"><i class="fa-solid fa-key"></i> Admin Password එක වෙනස් කරන්න:</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                    <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">වෙබ් අඩවියේ පසුබිම් Photo එක (Gallery):</label>
-                        <input type="file" id="admBgFile" accept="image/*" style="width:100%; padding: 4px;">
-                    </div>
-                    <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">දුරකථන අංක පිටස්තර අයට පෙන්වීම:</label>
-                        <select id="admShowPhoneSelect" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%;">
-                            <option value="false">නැත - අංක සඟවන්න (Private)</option>
-                            <option value="true">ඔව් - අංක ප්‍රසිද්ධියේ පෙන්වන්න</option>
-                        </select>
-                    </div>
-                    <button onclick="adminSaveAppearance()" class="btn-action" style="grid-column: 1/-1; justify-content:center; padding: 7px;">
-                        <i class="fa-solid fa-floppy-disk"></i> පසුබිම සහ Privacy Update කරන්න
+                    <input type="password" id="curAdminPassInput" placeholder="වත්මන් මුරපදය" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                    <input type="password" id="newAdminPassInput" placeholder="නව මුරපදය" style="padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                    <button onclick="updateAdminPassword()" class="btn-action" style="grid-column: 1/-1; background:#dc2626; justify-content:center; padding: 7px;">
+                        <i class="fa-solid fa-lock"></i> Update Password
                     </button>
                 </div>
             </div>
 
-            <!-- Admin Rates & Dual WhatsApp -->
+            <!-- 2. Dual WhatsApp & Rates -->
             <div style="background: #eef2ff; border: 1px solid #c7d2fe; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                <h4 style="color: #3730a3; font-size: 0.9rem; margin-bottom: 6px;"><i class="fa-solid fa-sliders"></i> ගාස්තු, බැංකු විස්තර සහ Dual WhatsApp:</h4>
+                <h4 style="color: #3730a3; font-size: 0.9rem; margin-bottom: 6px;"><i class="fa-solid fa-sliders"></i> WhatsApp සහ ගාස්තු සැකසුම්:</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
                     <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">ප්‍රධාන WhatsApp (Main):</label>
-                        <input type="text" id="admWaNumber" style="padding: 6px;">
+                        <label style="font-size: 0.75rem; font-weight:600;">Main WhatsApp:</label>
+                        <input type="text" id="admMainWa" value="94784693750" style="padding: 6px;">
                     </div>
                     <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">දෙවන WhatsApp (2nd Alerts):</label>
-                        <input type="text" id="admShop2WaNumber" style="padding: 6px;">
+                        <label style="font-size: 0.75rem; font-weight:600;">2nd WhatsApp:</label>
+                        <input type="text" id="admSecondWa" value="94770000000" style="padding: 6px;">
                     </div>
                     <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">ලියාපදිංචි ගාස්තුව (Rs.):</label>
-                        <input type="number" id="admRegFeeInput" style="padding: 6px;">
+                        <label style="font-size: 0.75rem; font-weight:600;">ලියාපදිංචි ගාස්තුව:</label>
+                        <input type="number" id="admRegFee" value="1500" style="padding: 6px;">
                     </div>
                     <div>
-                        <label style="font-size: 0.75rem; font-weight:600;">දැන්වීම් ගාස්තුව (Rs.):</label>
-                        <input type="number" id="admAdFeeInput" style="padding: 6px;">
+                        <label style="font-size: 0.75rem; font-weight:600;">දැන්වීම් ගාස්තුව:</label>
+                        <input type="number" id="admAdFee" value="1000" style="padding: 6px;">
                     </div>
-                    <div style="grid-column: 1/-1;">
-                        <label style="font-size: 0.75rem; font-weight:600;">බැංකු විස්තරය:</label>
-                        <input type="text" id="admBankInput" style="padding: 6px;">
-                    </div>
-                    <button onclick="adminSaveRates()" class="btn-action" style="grid-column: 1/-1; background:#4338ca; justify-content:center; padding: 7px;">
-                        <i class="fa-solid fa-check"></i> ගාස්තු සහ WhatsApp අංක Update කරන්න
+                    <button onclick="saveAdminSettings()" class="btn-action" style="grid-column: 1/-1; background:#4338ca; justify-content:center; padding: 7px;">
+                        <i class="fa-solid fa-floppy-disk"></i> සැකසුම් සුරකින්න
                     </button>
                 </div>
             </div>
 
-            <!-- Admin Publish Ad with Expiry Days -->
+            <!-- 3. Add Custom Ad Banner -->
             <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
                 <h4 style="color: #92400e; font-size: 0.9rem; margin-bottom: 6px;"><i class="fa-solid fa-rectangle-ad"></i> නව Ad Banner එකක් එක් කරන්න:</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                    <input type="text" id="adAdminTitle" placeholder="දැන්වීමේ නම" style="padding: 6px;">
-                    <input type="text" id="adAdminPhone" placeholder="දුරකථන අංකය" style="padding: 6px;">
-                    <div style="grid-column: 1/-1;">
-                        <label style="font-size:0.75rem; font-weight:600;">ප්‍රචාරය විය යුතු දින ගණන:</label>
-                        <select id="adAdminDays" style="padding: 6px; width: 100%;">
-                            <option value="7">දින 7ක්</option>
-                            <option value="14">දින 14ක්</option>
-                            <option value="30" selected>දින 30ක්</option>
-                            <option value="60">දින 60ක්</option>
-                        </select>
-                    </div>
-                    <div style="grid-column: 1/-1;">
-                        <input type="file" id="adAdminFile" accept="image/*" style="width:100%; padding: 4px;">
-                    </div>
-                    <button onclick="adminPublishAd()" class="btn-action" style="grid-column: 1/-1; background:#d97706; justify-content:center; padding: 7px;">
-                        <i class="fa-solid fa-upload"></i> Banner එක Live කරන්න
+                    <input type="text" id="admAdTitle" placeholder="දැන්වීමේ මාතෘකාව" style="padding: 6px;">
+                    <input type="text" id="admAdPhone" placeholder="දුරකථන අංකය" style="padding: 6px;">
+                    <input type="text" id="admAdImg" placeholder="පින්තූර ලින්ක් එක (Image URL)" style="grid-column: 1/-1; padding: 6px;">
+                    <button onclick="adminAddAd()" class="btn-action" style="grid-column: 1/-1; background:#d97706; justify-content:center; padding: 7px;">
+                        <i class="fa-solid fa-plus"></i> Ad එක Live කරන්න
                     </button>
                 </div>
             </div>
 
-            <!-- Admin Manage Ads Table -->
-            <h4 style="font-size: 0.85rem; margin-bottom: 4px;">සක්‍රීය දැන්වීම්:</h4>
+            <!-- 4. Active Ads Table -->
+            <h4 style="font-size: 0.85rem; margin-bottom: 4px;">දැනට ධාවනය වන දැන්වීම්:</h4>
             <div style="max-height: 120px; overflow-y: auto; margin-bottom: 15px;">
                 <table class="admin-table">
-                    <thead><tr><th>නම</th><th>අංකය</th><th>කල් ඉකුත්වීම</th><th>Action</th></tr></thead>
-                    <tbody id="adminAdsTableBody"></tbody>
+                    <thead><tr><th>මාතෘකාව</th><th>දුරකථනය</th><th>Action</th></tr></thead>
+                    <tbody id="admAdsTableBody"></tbody>
                 </table>
             </div>
 
-            <!-- Admin Manage Products (Includes Hidden Phone Numbers) -->
-            <h4 style="font-size: 0.85rem; margin-bottom: 4px;">භාණ්ඩ කළමනාකරණය (දුරකථන අංක සහිතව):</h4>
-            <div style="max-height: 150px; overflow-y: auto; margin-bottom: 15px;">
-                <table class="admin-table">
-                    <thead><tr><th>භාණ්ඩය</th><th>නිෂ්පාදකයා</th><th>දුරකථනය</th><th>මිල</th><th>Action</th></tr></thead>
-                    <tbody id="adminTableBody"></tbody>
-                </table>
-            </div>
-
-            <!-- Admin Manage Feedbacks -->
-            <h4 style="font-size: 0.85rem; margin-bottom: 4px;">පාරිභෝගික Feedbacks:</h4>
-            <div style="max-height: 120px; overflow-y: auto;" id="adminFeedbackTableContainer"></div>
         </div>
     </div>
 
-    <!-- Scripts Logic -->
     <script>
-        // ----------------- Service Worker -----------------
+        // Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('SW Active'))
-                    .catch(err => console.log('SW Error', err));
+                navigator.serviceWorker.register('sw.js').catch(err => console.log(err));
             });
         }
 
-        // ----------------- PWA Install -----------------
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-        });
-
-        function triggerPwaInstall() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(() => deferredPrompt = null);
-            } else {
-                alert("බ්‍රවුසරයේ ඉහළ දකුණු තිත් 3 ඔබා 'Install App' (හෝ 'Add to Home screen') තෝරන්න.");
+        // Ads Data (Preserved in LocalStorage)
+        let defaultAds = [
+            {
+                title: "මංජුල මෝටර්ස් - කුරුවිට",
+                phone: "078 469 3750",
+                img: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80"
+            },
+            {
+                title: "EDO හෙළ බොජුන් සහ අත්කම්",
+                phone: "078 469 3750",
+                img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80"
+            },
+            {
+                title: "ස්වභාවික කාබනික නිෂ්පාදන",
+                phone: "078 469 3750",
+                img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80"
             }
-        }
+        ];
 
-        // ----------------- One-Click Share Web Link -----------------
-        function shareWebsiteLink() {
-            const shareData = {
-                title: 'EDO Entrepreneur',
-                text: 'දේශීය ස්වයං රැකියා හා නිෂ්පාදන වෙළඳපොළ වෙත පිවිසෙන්න!',
-                url: window.location.href
-            };
+        let ads = JSON.parse(localStorage.getItem('edo_custom_ads')) || defaultAds;
 
-            if (navigator.share) {
-                navigator.share(shareData).catch(() => {});
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                alert("වෙබ් අඩවියේ Link එක සාර්ථකව Copy විය! දැන් WhatsApp හෝ Facebook හි Paste කර යවන්න.");
+        // Products Data
+        const sampleProducts = [
+            {
+                id: "p1",
+                title: "ස්වභාවික කෝමාරිකා පානය (Organic)",
+                category: "ආහාර හා පාන",
+                location: "කුරුවිට",
+                basePrice: 450,
+                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: "p2",
+                title: "අත්කම් වේවැල් මල් පෝච්චි කට්ටලය",
+                category: "අත්කම් නිර්මාණ",
+                location: "රත්නපුර",
+                basePrice: 1200,
+                img: "https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: "p3",
+                title: "පාරම්පරික කිතුල් හකුරු",
+                category: "ආහාර හා පාන",
+                location: "කුරුවිට",
+                basePrice: 850,
+                img: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: "p4",
+                title: "කාබනික එළවළු සහ පලතුරු පැළ",
+                category: "කාබනික නිෂ්පාදන",
+                location: "ඇහැලියගොඩ",
+                basePrice: 350,
+                img: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80"
             }
-        }
+        ];
 
-        // ----------------- Firebase Configuration -----------------
-        const firebaseConfig = {
-            apiKey: "AIzaSyB8u4...", // ඔබගේ Firebase API Key එක
-            authDomain: "edo-store.firebaseapp.com",
-            projectId: "edo-store",
-            storageBucket: "edo-store.appspot.com",
-            messagingSenderId: "364530058319",
-            appId: "1:364530058319:web:355b2067"
-        };
-
-        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        // Default Settings
-        const DEFAULT_PASS = "admin123";
-        let defaultSettings = {
-            adminPass: DEFAULT_PASS,
-            bgImg: "",
-            showPhones: false,
-            whatsapp: "94784693750",
-            shop2Whatsapp: "94770000000",
-            regFee: 1500,
-            adFee: 1000,
-            discount2: 15,
-            discount3: 25,
-            bankDetails: "BOC Bank | ගිණුම් අංකය: 12345678 | නම: EDO Entrepreneur",
-            announcement: "විශේෂ දීමනාව: භාණ්ඩ 2කට 15% ක සහ 3කට 25% ක විශේෂ වට්ටමක් හිමිවේ!"
-        };
-
-        let settings = { ...defaultSettings };
-        let ads = [];
-        let products = [];
         let cart = [];
-        let currentCategory = "All";
-        let searchQuery = "";
-        let currentRatingVal = 5;
-
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-            });
-        }
-
-        // ----------------- Settings Sync -----------------
-        function syncSettingsFromFirebase() {
-            db.collection('settings').doc('general_config').onSnapshot(doc => {
-                if (doc.exists) {
-                    settings = { ...defaultSettings, ...doc.data() };
-                } else {
-                    db.collection('settings').doc('general_config').set(defaultSettings);
-                }
-                updateUIWithSettings();
-            });
-        }
-
-        function updateUIWithSettings() {
-            if (settings.bgImg) {
-                document.body.style.backgroundImage = `linear-gradient(rgba(248, 250, 248, 0.92), rgba(248, 250, 248, 0.92)), url('${settings.bgImg}')`;
-            }
-
-            document.getElementById('heroRegFee').innerText = `රු. ${settings.regFee}`;
-            document.getElementById('modalRegFeeDisplay').innerText = `රු. ${settings.regFee}/=`;
-            document.getElementById('adFeeBadge').innerText = `Rs. ${settings.adFee}`;
-            document.getElementById('modalAdFeeDisplay').innerText = `රු. ${settings.adFee}/=`;
-            document.getElementById('announcementText').innerText = settings.announcement;
-            document.getElementById('bankDetailsText').innerText = settings.bankDetails;
-            document.getElementById('topWaNumber').innerText = settings.whatsapp;
-            document.getElementById('topWaLink').href = `https://wa.me/${settings.whatsapp}`;
-            document.getElementById('floatingWaLink').href = `https://wa.me/${settings.whatsapp}?text=Hello%20EDO,%20මට%20විස්තර%20දැනගැනීමට%20අවශ්‍යයි.`;
-
-            updatePricePreview();
-            renderProducts();
-        }
-
-        function calculateFinalPrice(basePrice) {
-            const commission = basePrice * 0.10;
-            return {
-                basePrice: basePrice,
-                commission: Math.round(commission),
-                finalPrice: Math.round(basePrice + commission)
-            };
-        }
-
-        function calculateRegFee(qty) {
-            let baseTotal = settings.regFee * qty;
-            let discountPercent = qty === 2 ? (settings.discount2 || 0) : (qty >= 3 ? (settings.discount3 || 0) : 0);
-            let discountAmount = Math.round((baseTotal * discountPercent) / 100);
-            return {
-                baseTotal: baseTotal,
-                discountPercent: discountPercent,
-                discountAmount: discountAmount,
-                finalRegTotal: baseTotal - discountAmount
-            };
-        }
-
-        // ----------------- Ads Slider with Expiry -----------------
         let currentAdIdx = 0;
         let adInterval = null;
 
-        function syncAdsFromFirebase() {
-            db.collection('ads').orderBy('createdAt', 'desc').onSnapshot(snap => {
-                ads = [];
-                const now = new Date();
-                snap.forEach(doc => {
-                    const data = doc.data();
-                    let isExpired = false;
-                    if (data.expireAt) {
-                        const expDate = data.expireAt.toDate ? data.expireAt.toDate() : new Date(data.expireAt);
-                        if (now > expDate) isExpired = true;
-                    }
-                    if (!isExpired) ads.push({ id: doc.id, ...data });
-                });
-                initAdSlider();
-                renderAdminAdsTable();
-            });
-        }
-
-        function initAdSlider() {
+        // Smooth Auto-Play Banner
+        function startAdSlider() {
             const sliderBox = document.getElementById("adSliderBox");
             sliderBox.querySelectorAll('.ad-slide').forEach(s => s.remove());
 
-            if (ads.length === 0) {
-                document.getElementById('adTitleText').innerText = "දැන්වීම් පළකිරීමට විමසන්න";
-                document.getElementById('adPhoneText').innerHTML = `<i class="fa-brands fa-whatsapp"></i> ${settings.whatsapp}`;
-                return;
-            }
+            if (ads.length === 0) return;
 
             ads.forEach((ad, idx) => {
                 const slide = document.createElement('div');
@@ -1381,80 +921,39 @@
                     slides[currentAdIdx].classList.remove('active');
                     currentAdIdx = (currentAdIdx + 1) % slides.length;
                     slides[currentAdIdx].classList.add('active');
+
                     document.getElementById('adTitleText').innerText = ads[currentAdIdx].title;
                     document.getElementById('adPhoneText').innerHTML = `<i class="fa-brands fa-whatsapp"></i> ${ads[currentAdIdx].phone}`;
                 }
-            }, 4000);
+            }, 3500);
         }
 
-        // ----------------- Products & Privacy -----------------
-        function syncProductsFromFirebase() {
-            db.collection('products').orderBy('createdAt', 'desc').onSnapshot(snap => {
-                products = [];
-                snap.forEach(doc => {
-                    products.push({ id: doc.id, ...doc.data() });
-                });
-                renderProducts();
-                renderAdminTable();
-            });
-        }
-
-        function renderProducts() {
+        // Render Products
+        function renderProducts(items) {
             const grid = document.getElementById("productGrid");
-            let filtered = products;
-
-            if (currentCategory !== "All") filtered = filtered.filter(p => p.category === currentCategory);
-            if (searchQuery !== "") {
-                filtered = filtered.filter(p => 
-                    (p.title && p.title.toLowerCase().includes(searchQuery)) || 
-                    (p.location && p.location.toLowerCase().includes(searchQuery))
-                );
-            }
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #777; padding: 25px;">කිසිදු භාණ්ඩයක් හමු නොවීය.</p>`;
-                return;
-            }
-
-            grid.innerHTML = filtered.map(item => {
-                const calc = calculateFinalPrice(item.basePrice);
-                const firstImg = (item.images && item.images.length > 0) ? item.images[0] : 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=500';
-                
-                // Privacy Protection: Phone numbers hidden unless admin enables it
-                const phoneDisplay = settings.showPhones 
-                    ? `<span style="color:#0284c7;"><i class="fa-solid fa-phone"></i> ${item.phone || '-'}</span>`
-                    : `<span style="color:#10b981;"><i class="fa-solid fa-circle-check"></i> EDO Verified Seller</span>`;
-
+            grid.innerHTML = items.map(p => {
+                const finalPrice = Math.round(p.basePrice * 1.10);
                 return `
                     <div class="card">
                         <div class="card-img-slider">
-                            <img src="${firstImg}" alt="${item.title}">
+                            <img src="${p.img}" alt="${p.title}">
                         </div>
                         <div class="card-body">
-                            <span class="card-cat">${item.category}</span>
-                            <h3 class="card-title">${item.title}</h3>
+                            <span class="card-cat">${p.category}</span>
+                            <h3 class="card-title">${p.title}</h3>
                             <div class="card-meta">
-                                <span><i class="fa-solid fa-location-dot"></i> ${item.location || 'දේශීය'}</span>
-                                ${phoneDisplay}
+                                <span><i class="fa-solid fa-location-dot"></i> ${p.location}</span>
                             </div>
-                            
                             <div class="price-breakdown">
-                                <div>නියම මිල: රු. ${calc.basePrice.toLocaleString()}</div>
-                                <div class="price-total">මිල: රු. ${calc.finalPrice.toLocaleString()}/=</div>
+                                <div>නියම මිල: රු. ${p.basePrice}</div>
+                                <div class="price-total">මිල: රු. ${finalPrice}/=</div>
                             </div>
-
                             <div class="card-btns-grid">
-                                <button onclick="addToCart('${item.id}', '${item.title}', ${calc.finalPrice}, '${firstImg}')" class="btn-card-action btn-add-cart">
+                                <button onclick="addToCart('${p.id}', '${p.title}', ${finalPrice})" class="btn-card-action btn-add-cart">
                                     <i class="fa-solid fa-cart-plus"></i> Add
                                 </button>
-                                <button onclick="openCallReqModal('${item.title}')" class="btn-card-action btn-req-call">
-                                    <i class="fa-solid fa-phone"></i> Call
-                                </button>
-                                <button onclick="openDirectMsgModal('${item.title}')" class="btn-card-action btn-direct-msg">
-                                    <i class="fa-solid fa-comment-dots"></i> Msg
-                                </button>
-                                <button onclick="handleCustomerOrder('${item.title}', '${item.seller}', '${item.location || 'ශ්‍රී ලංකාව'}', ${calc.finalPrice})" class="btn-card-action btn-order-direct">
-                                    <i class="fa-brands fa-whatsapp"></i> මිලදී ගන්න
+                                <button onclick="orderDirect('${p.title}', ${finalPrice})" class="btn-card-action btn-order-direct">
+                                    <i class="fa-brands fa-whatsapp"></i> ගන්න
                                 </button>
                             </div>
                         </div>
@@ -1463,463 +962,182 @@
             }).join('');
         }
 
-        // ----------------- Add to Cart System -----------------
-        function addToCart(id, title, price, img) {
-            const existing = cart.find(i => i.id === id);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ id, title, price, img, qty: 1 });
-            }
-            updateCartUI();
-            alert(`"${title}" සාර්ථකව Cart එකට එකතු විය!`);
+        // Cart Functions
+        function addToCart(id, title, price) {
+            const exist = cart.find(i => i.id === id);
+            if (exist) exist.qty += 1;
+            else cart.push({ id, title, price, qty: 1 });
+            updateCartCount();
+            alert(`"${title}" Cart එකට එක්විය!`);
         }
 
-        function updateCartUI() {
-            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
-            const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-
-            document.getElementById('headCartCount').innerText = totalQty;
-            document.getElementById('floatCartCount').innerText = totalQty;
-            document.getElementById('floatCartTotal').innerText = `Rs. ${totalPrice.toLocaleString()}`;
-
-            const bar = document.getElementById('cartFloatBar');
-            bar.style.display = totalQty > 0 ? 'flex' : 'none';
+        function updateCartCount() {
+            const count = cart.reduce((a, b) => a + b.qty, 0);
+            document.getElementById('headCartCount').innerText = count;
         }
 
         function openCartModal() {
             const list = document.getElementById('cartItemsList');
             if (cart.length === 0) {
-                list.innerHTML = `<p style="text-align:center; color:#888; padding:15px;">ඔබගේ Cart එක හිස්ව පවතී.</p>`;
+                list.innerHTML = `<p style="text-align:center; padding:15px; color:#888;">Cart එක හිස්ය.</p>`;
                 document.getElementById('cartModalTotal').innerText = 'Rs. 0';
             } else {
                 let total = 0;
-                list.innerHTML = cart.map((item, idx) => {
-                    const sub = item.price * item.qty;
-                    total += sub;
-                    return `
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; border-bottom:1px solid #eee; padding-bottom:6px;">
-                            <div>
-                                <div style="font-weight:700; font-size:0.85rem;">${item.title}</div>
-                                <div style="font-size:0.75rem; color:#666;">Rs. ${item.price} x ${item.qty} = <b>Rs. ${sub.toLocaleString()}</b></div>
-                            </div>
-                            <button onclick="removeFromCart(${idx})" class="btn-del" style="padding:2px 6px;">✕</button>
-                        </div>
-                    `;
+                list.innerHTML = cart.map(i => {
+                    total += (i.price * i.qty);
+                    return `<div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                        <span>${i.title} (${i.qty})</span>
+                        <b>Rs. ${i.price * i.qty}</b>
+                    </div>`;
                 }).join('');
-                document.getElementById('cartModalTotal').innerText = `Rs. ${total.toLocaleString()}/=`;
+                document.getElementById('cartModalTotal').innerText = `Rs. ${total}/=`;
             }
             openModal('cartModal');
         }
 
-        function removeFromCart(idx) {
-            cart.splice(idx, 1);
-            updateCartUI();
-            openCartModal();
-        }
-
         function checkoutCartToWhatsApp() {
-            if (cart.length === 0) return alert("කරුණාකර භාණ්ඩ තෝරන්න!");
-            const name = document.getElementById('cartBuyerName').value.trim();
-            const addr = document.getElementById('cartBuyerAddress').value.trim();
-            const phone = document.getElementById('cartBuyerPhone').value.trim();
-
-            if (!name || !addr || !phone) return alert("කරුණාකර ඔබගේ නම, ලිපිනය සහ දුරකථන අංකය ඇතුළත් කරන්න!");
-
+            if (cart.length === 0) return alert("Cart එක හිස්ය!");
+            const name = document.getElementById('cartBuyerName').value || "පාරිභෝගික";
+            const addr = document.getElementById('cartBuyerAddress').value || "නැත";
             let total = 0;
             let itemsText = cart.map(i => {
                 total += (i.price * i.qty);
-                return `• ${i.title} (Qty: ${i.qty}) - Rs. ${(i.price * i.qty).toLocaleString()}`;
+                return `• ${i.title} (x${i.qty}) = Rs. ${i.price * i.qty}`;
             }).join('\n');
 
-            const orderMsg = encodeURIComponent(
-                `🛒 *EDO Entrepreneur නව Shopping Cart ඇණවුම:*\n\n` +
-                `👤 පාරිභෝගිකයා: ${name}\n` +
-                `📞 දුරකථනය: ${phone}\n` +
-                `📍 ලිපිනය: ${addr}\n\n` +
-                `📦 *භාණ්ඩ ලැයිස්තුව:*\n${itemsText}\n\n` +
-                `💰 *මුළු එකතුව: රු. ${total.toLocaleString()}/=*`
-            );
-
-            window.open(`https://wa.me/${settings.whatsapp}?text=${orderMsg}`, '_blank');
-            if (settings.shop2Whatsapp && settings.shop2Whatsapp !== settings.whatsapp) {
-                setTimeout(() => window.open(`https://wa.me/${settings.shop2Whatsapp}?text=${orderMsg}`, '_blank'), 1200);
-            }
-
+            const msg = encodeURIComponent(`*EDO Entrepreneur ඇණවුම:*\n\nනම: ${name}\nලිපිනය: ${addr}\n\n${itemsText}\n\n*මුළු මුදල: රු. ${total}/=*`);
+            const wa = localStorage.getItem('edo_main_wa') || "94784693750";
+            window.open(`https://wa.me/${wa}?text=${msg}`, '_blank');
             cart = [];
-            updateCartUI();
+            updateCartCount();
             closeModal('cartModal');
-            alert("ඇණවුම සාර්ථකව WhatsApp වෙත යොමු විය!");
         }
 
-        // ----------------- Call Request Alert -----------------
-        function openCallReqModal(prodTitle) {
-            document.getElementById('callProdTitle').value = prodTitle;
-            openModal('callReqModal');
+        function orderDirect(title, price) {
+            const wa = localStorage.getItem('edo_main_wa') || "94784693750";
+            const msg = encodeURIComponent(`*EDO Entrepreneur ඇණවුම:*\n\nභාණ්ඩය: ${title}\nමිල: රු. ${price}/=\n\nමට මෙම භාණ්ඩය මිලදී ගැනීමට අවශ්‍යයි.`);
+            window.open(`https://wa.me/${wa}?text=${msg}`, '_blank');
         }
 
-        function submitCallRequest() {
-            const title = document.getElementById('callProdTitle').value;
-            const name = document.getElementById('callReqName').value.trim();
-            const phone = document.getElementById('callReqPhone').value.trim();
-
-            if (!name || !phone) return alert("කරුණාකර නම සහ දුරකථන අංකය ඇතුළත් කරන්න!");
-
-            const alertMsg = encodeURIComponent(
-                `📞 *නව Call Request එකක්!*\n\n` +
-                `• භාණ්ඩය: ${title}\n` +
-                `• පාරිභෝගිකයාගේ නම: ${name}\n` +
-                `• දුරකථන අංකය: ${phone}\n\n` +
-                `(මෙම පාරිභෝගිකයා මෙම භාණ්ඩය පිළිබඳ ඇමතුමක් ඉල්ලා සිටී)`
-            );
-
-            window.open(`https://wa.me/${settings.whatsapp}?text=${alertMsg}`, '_blank');
-            if (settings.shop2Whatsapp && settings.shop2Whatsapp !== settings.whatsapp) {
-                setTimeout(() => window.open(`https://wa.me/${settings.shop2Whatsapp}?text=${alertMsg}`, '_blank'), 1200);
-            }
-
-            closeModal('callReqModal');
-            alert("ඔබගේ ඇමතුම් ඉල්ලීම Admin වෙත යොමු විය! කෙටි වේලාවකින් ඔබව සම්බන්ධ කරගනු ඇත.");
-        }
-
-        // ----------------- Direct In-App Message System -----------------
-        function openDirectMsgModal(prodTitle) {
-            document.getElementById('inqProdTitle').value = prodTitle;
-            openModal('directMsgModal');
-        }
-
-        function submitDirectInquiry() {
-            const title = document.getElementById('inqProdTitle').value;
-            const name = document.getElementById('inqSenderName').value.trim();
-            const phone = document.getElementById('inqSenderPhone').value.trim();
-            const msg = document.getElementById('inqSenderMsg').value.trim();
-
-            if (!name || !phone || !msg) return alert("කරුණාකර සියලු විස්තර ඇතුළත් කරන්න!");
-
-            db.collection('inquiries').add({
-                product: title,
-                senderName: name,
-                senderPhone: phone,
-                message: msg,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                closeModal('directMsgModal');
-                alert("ඔබගේ පණිවිඩය Admin Inbox වෙත සාර්ථකව ලැබුණි!");
-
-                const waAlert = encodeURIComponent(`💬 *නව Direct Message එකක්!*\n\n• භාණ්ඩය: ${title}\n• එවූ අය: ${name} (${phone})\n• පණිවිඩය: ${msg}`);
-                window.open(`https://wa.me/${settings.whatsapp}?text=${waAlert}`, '_blank');
-            }).catch(err => alert("දෝෂයක්: " + err.message));
-        }
-
-        function loadAdminInquiries() {
-            db.collection('inquiries').orderBy('createdAt', 'desc').onSnapshot(snap => {
-                const box = document.getElementById('adminInquiriesList');
-                if (snap.empty) {
-                    box.innerHTML = '<p style="color:#888;">පණිවිඩ කිසිවක් නැත.</p>';
-                    return;
-                }
-                box.innerHTML = snap.docs.map(doc => {
-                    const d = doc.data();
-                    return `
-                        <div style="background:#fff; border:1px solid #f0abfc; padding:6px 10px; border-radius:6px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
-                            <div>
-                                <b>${d.senderName} (${d.senderPhone})</b> ➔ <i>${d.product}</i>
-                                <div>${d.message}</div>
-                            </div>
-                            <button onclick="deleteDoc('inquiries', '${doc.id}')" class="btn-del"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    `;
-                }).join('');
-            });
-        }
-
-        // ----------------- Customer Feedback with Photo -----------------
-        document.querySelectorAll('#userRatingPicker i').forEach(star => {
-            star.addEventListener('click', function() {
-                currentRatingVal = parseInt(this.getAttribute('data-v'));
-                document.querySelectorAll('#userRatingPicker i').forEach((s, idx) => {
-                    if (idx < currentRatingVal) s.classList.add('active');
-                    else s.classList.remove('active');
-                });
-            });
-        });
-
-        async function handleUserFeedbackSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('fbCustName').value.trim();
-            const msg = document.getElementById('fbCustMsg').value.trim();
-            const photoFile = document.getElementById('fbCustPhoto').files[0];
-
-            let photoBase64 = "";
-            if (photoFile) photoBase64 = await fileToBase64(photoFile);
-
-            db.collection('feedbacks').add({
-                name: name,
-                message: msg,
-                rating: currentRatingVal,
-                photo: photoBase64,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                alert("ඔබගේ වටිනා අදහස ලැබුණා. ස්තුතියි!");
-                closeModal('userFeedbackModal');
-            }).catch(err => alert("දෝෂයක්: " + err.message));
-        }
-
-        function loadLiveFeedbacks() {
-            db.collection('feedbacks').orderBy('timestamp', 'desc').onSnapshot(snap => {
-                const liveBox = document.getElementById('liveFeedbackContainer');
-                const adminBox = document.getElementById('adminFeedbackTableContainer');
-                liveBox.innerHTML = '';
-                adminBox.innerHTML = '';
-
-                if (snap.empty) {
-                    liveBox.innerHTML = '<p style="color:#888; font-size:0.85rem;">තවමත් කිසිදු ප්‍රතිචාරයක් පළ වී නැත.</p>';
-                    return;
-                }
-
-                snap.forEach(doc => {
-                    const data = doc.data();
-                    const stars = '⭐'.repeat(data.rating || 5);
-                    const imgHtml = data.photo ? `<img src="${data.photo}" class="feedback-img">` : '';
-
-                    liveBox.innerHTML += `
-                        <div class="feedback-item">
-                            ${imgHtml}
-                            <div>
-                                <div style="font-weight:700; font-size:0.85rem;">${data.name} <span>${stars}</span></div>
-                                <div style="font-size:0.8rem; color:#475569; margin-top:2px;">${data.message}</div>
-                            </div>
-                        </div>
-                    `;
-
-                    adminBox.innerHTML += `
-                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding:6px 0;">
-                            <div><b>${data.name}</b> (${data.rating} Stars): ${data.message}</div>
-                            <button onclick="deleteDoc('feedbacks', '${doc.id}')" class="btn-del"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    `;
-                });
-            });
-        }
-
-        // ----------------- Single Customer Order -----------------
-        function handleCustomerOrder(title, seller, loc, finalPrice) {
-            const orderMsg = encodeURIComponent(
-                `*EDO Entrepreneur ඇණවුම:*\n` +
-                `• භාණ්ඩය: ${title}\n` +
-                `• මිල: රු. ${finalPrice}/=\n\n` +
-                `මට මෙම භාණ්ඩය ඇණවුම් කිරීමට අවශ්‍යයි.`
-            );
-            window.open(`https://wa.me/${settings.whatsapp}?text=${orderMsg}`, '_blank');
-            if (settings.shop2Whatsapp && settings.shop2Whatsapp !== settings.whatsapp) {
-                setTimeout(() => window.open(`https://wa.me/${settings.shop2Whatsapp}?text=${orderMsg}`, '_blank'), 1200);
+        function shareWebsiteLink() {
+            if (navigator.share) {
+                navigator.share({ title: 'EDO Entrepreneur', url: window.location.href }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert("Link එක සාර්ථකව Copy විය!");
             }
         }
 
-        // ----------------- Admin Operations -----------------
-        function checkAdminLogin() {
-            const currentPass = settings.adminPass || DEFAULT_PASS;
-            const pass = prompt("Admin මුරපදය ඇතුළත් කරන්න:");
-            if (pass === currentPass) {
-                document.getElementById('admRegFeeInput').value = settings.regFee;
-                document.getElementById('admAdFeeInput').value = settings.adFee;
-                document.getElementById('admWaNumber').value = settings.whatsapp;
-                document.getElementById('admShop2WaNumber').value = settings.shop2Whatsapp || "";
-                document.getElementById('admBankInput').value = settings.bankDetails;
-                document.getElementById('admShowPhoneSelect').value = settings.showPhones ? "true" : "false";
+        function triggerPwaInstall() {
+            alert("බ්‍රවුසරයේ ඉහළ දකුණු තිත් 3 ඔබා 'Install App' (හෝ 'Add to Home screen') දෙන්න.");
+        }
 
-                loadAdminInquiries();
-                renderAdminAdsTable();
-                renderAdminTable();
+        // ================= ADMIN FUNCTIONS & PASSWORD UPDATE =================
+        function openAdminPanel() {
+            const savedPass = localStorage.getItem('edo_admin_pass') || 'admin123';
+            const inputPass = prompt("Admin මුරපදය (Password) ඇතුළත් කරන්න:");
+            
+            if (inputPass === savedPass) {
+                renderAdminAdsList();
                 openModal('adminModal');
-            } else if (pass !== null) {
+            } else if (inputPass !== null) {
                 alert("මුරපදය වැරදියි!");
             }
         }
 
-        async function adminSaveAppearance() {
-            const bgFile = document.getElementById('admBgFile').files[0];
-            const showPh = document.getElementById('admShowPhoneSelect').value === "true";
+        function updateAdminPassword() {
+            const savedPass = localStorage.getItem('edo_admin_pass') || 'admin123';
+            const curPass = document.getElementById('curAdminPassInput').value;
+            const newPass = document.getElementById('newAdminPassInput').value;
 
-            let payload = { showPhones: showPh };
-            if (bgFile) {
-                payload.bgImg = await fileToBase64(bgFile);
-            }
-
-            db.collection('settings').doc('general_config').update(payload)
-                .then(() => alert("පසුබිම් Photo එක සහ Privacy සැකසුම් සාර්ථකව Update විය!"))
-                .catch(err => alert("දෝෂයක්: " + err.message));
-        }
-
-        function adminSaveRates() {
-            db.collection('settings').doc('general_config').update({
-                regFee: parseFloat(document.getElementById('admRegFeeInput').value),
-                adFee: parseFloat(document.getElementById('admAdFeeInput').value),
-                whatsapp: document.getElementById('admWaNumber').value.trim(),
-                shop2Whatsapp: document.getElementById('admShop2WaNumber').value.trim(),
-                bankDetails: document.getElementById('admBankInput').value
-            }).then(() => alert("ගාස්තු සහ WhatsApp අංක Update විය!"))
-            .catch(err => alert("දෝෂයක්: " + err.message));
-        }
-
-        async function adminPublishAd() {
-            const title = document.getElementById("adAdminTitle").value.trim();
-            const phone = document.getElementById("adAdminPhone").value.trim();
-            const days = parseInt(document.getElementById("adAdminDays").value) || 30;
-            const file = document.getElementById("adAdminFile").files[0];
-
-            if (!title || !file) return alert("මාතෘකාව සහ Photo එකක් තෝරන්න!");
-
-            const expireDate = new Date();
-            expireDate.setDate(expireDate.getDate() + days);
-
-            const imgBase64 = await fileToBase64(file);
-            db.collection('ads').add({
-                img: imgBase64,
-                title: title,
-                phone: phone || settings.whatsapp,
-                durationDays: days,
-                expireAt: expireDate,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                alert(`දැන්වීම දින ${days}ක් සඳහා Live විය!`);
-                document.getElementById("adAdminTitle").value = '';
-                document.getElementById("adAdminFile").value = '';
-            }).catch(err => alert("දෝෂයක්: " + err.message));
-        }
-
-        function renderAdminAdsTable() {
-            const tbody = document.getElementById("adminAdsTableBody");
-            if (ads.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">දැන්වීම් නැත.</td></tr>`;
+            if (curPass !== savedPass) {
+                alert("වත්මන් මුරපදය වැරදියි!");
                 return;
             }
-            tbody.innerHTML = ads.map(item => `
+            if (!newPass || newPass.length < 4) {
+                alert("අලුත් මුරපදය අවම වශයෙන් අක්ෂර 4ක් විය යුතුය!");
+                return;
+            }
+
+            localStorage.setItem('edo_admin_pass', newPass);
+            alert("Admin Password එක සාර්ථකව වෙනස් කරන ලදී!");
+            document.getElementById('curAdminPassInput').value = '';
+            document.getElementById('newAdminPassInput').value = '';
+        }
+
+        function saveAdminSettings() {
+            const mainWa = document.getElementById('admMainWa').value.trim();
+            const secondWa = document.getElementById('admSecondWa').value.trim();
+            const regFee = document.getElementById('admRegFee').value;
+
+            localStorage.setItem('edo_main_wa', mainWa);
+            localStorage.setItem('edo_second_wa', secondWa);
+            localStorage.setItem('edo_reg_fee', regFee);
+
+            document.getElementById('heroRegFee').innerText = `රු. ${regFee}`;
+            alert("සැකසුම් සාර්ථකව සුරැකිණි!");
+        }
+
+        function adminAddAd() {
+            const title = document.getElementById('admAdTitle').value.trim();
+            const phone = document.getElementById('admAdPhone').value.trim();
+            const img = document.getElementById('admAdImg').value.trim();
+
+            if (!title || !img) return alert("මාතෘකාව සහ පින්තූර ලින්ක් එක ඇතුළත් කරන්න!");
+
+            ads.push({ title, phone: phone || "078 469 3750", img });
+            localStorage.setItem('edo_custom_ads', JSON.stringify(ads));
+            startAdSlider();
+            renderAdminAdsList();
+            alert("Ad Banner එක සාර්ථකව Live විය!");
+            document.getElementById('admAdTitle').value = '';
+            document.getElementById('admAdPhone').value = '';
+            document.getElementById('admAdImg').value = '';
+        }
+
+        function renderAdminAdsList() {
+            const tbody = document.getElementById('admAdsTableBody');
+            tbody.innerHTML = ads.map((ad, idx) => `
                 <tr>
-                    <td>${item.title}</td>
-                    <td>${item.phone}</td>
-                    <td>${item.expireAt ? (item.expireAt.toDate ? item.expireAt.toDate().toLocaleDateString() : new Date(item.expireAt).toLocaleDateString()) : '-'}</td>
-                    <td><button onclick="deleteDoc('ads', '${item.id}')" class="btn-del"><i class="fa-solid fa-trash"></i></button></td>
+                    <td>${ad.title}</td>
+                    <td>${ad.phone}</td>
+                    <td><button onclick="adminDeleteAd(${idx})" class="btn-del">Delete</button></td>
                 </tr>
             `).join('');
         }
 
-        function renderAdminTable() {
-            const tbody = document.getElementById("adminTableBody");
-            tbody.innerHTML = products.map(item => `
-                <tr>
-                    <td>${item.title}</td>
-                    <td>${item.seller}</td>
-                    <td><b style="color:#0284c7;">${item.phone || '-'}</b></td>
-                    <td>Rs. ${item.basePrice}</td>
-                    <td><button onclick="deleteDoc('products', '${item.id}')" class="btn-del"><i class="fa-solid fa-trash"></i></button></td>
-                </tr>
-            `).join('');
-        }
-
-        function deleteDoc(coll, id) {
-            if (confirm("මෙය සදහටම ඉවත් කිරීමට ඔබට සහතිකද?")) {
-                db.collection(coll).doc(id).delete()
-                    .then(() => alert("සාර්ථකව ඉවත් කරන ලදී!"))
-                    .catch(err => alert("දෝෂයක්: " + err.message));
+        function adminDeleteAd(idx) {
+            if (confirm("මෙම දැන්වීම ඉවත් කිරීමට සහතිකද?")) {
+                ads.splice(idx, 1);
+                localStorage.setItem('edo_custom_ads', JSON.stringify(ads));
+                startAdSlider();
+                renderAdminAdsList();
             }
         }
 
+        function openModal(id) { document.getElementById(id).style.display = 'block'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
         function handleSearch() {
-            searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
-            renderProducts();
-        }
-
-        function filterCategory(cat, btn) {
-            currentCategory = cat;
-            document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            renderProducts();
-        }
-
-        function openModal(id) { document.getElementById(id).style.display = "block"; }
-        function closeModal(id) { document.getElementById(id).style.display = "none"; }
-
-        function updatePricePreview() {
-            const p = parseFloat(document.getElementById("upPrice").value) || 0;
-            const qty = parseInt(document.getElementById("upItemQty").value) || 1;
-            const calc = calculateFinalPrice(p);
-            const regCalc = calculateRegFee(qty);
-
-            let discountText = regCalc.discountPercent > 0 
-                ? `<div style="color: #c2410c; font-weight: 600;">වට්ටම (${regCalc.discountPercent}%): - රු. ${regCalc.discountAmount.toLocaleString()}</div>` 
-                : '';
-
-            document.getElementById("pricePreview").innerHTML = `
-                <div>විකුණුම් මිල: <b>රු. ${calc.finalPrice.toLocaleString()}</b></div>
-                <div style="border-top: 1px dashed var(--accent-color); margin-top: 4px; padding-top: 4px;">
-                    <div>ලියාපදිංචි ගාස්තුව: රු. ${regCalc.baseTotal.toLocaleString()}</div>
-                    ${discountText}
-                    <div style="font-weight: 700; color: var(--primary-color);">ගෙවිය යුතු ගාස්තුව: රු. ${regCalc.finalRegTotal.toLocaleString()}/=</div>
-                </div>
-            `;
-        }
-
-        async function handleUserProdSubmit(e) {
-            e.preventDefault();
-            const seller = document.getElementById("upSeller").value;
-            const loc = document.getElementById("upLocation").value;
-            const phone = document.getElementById("upPhone").value;
-            const title = document.getElementById("upTitle").value;
-            const cat = document.getElementById("upCat").value;
-            const price = parseFloat(document.getElementById("upPrice").value);
-            const qty = parseInt(document.getElementById("upItemQty").value) || 1;
-
-            const calc = calculateFinalPrice(price);
-            const regCalc = calculateRegFee(qty);
-
-            const msg = encodeURIComponent(
-                `*EDO නව භාණ්ඩ ලියාපදිංචිය*\n\n` +
-                `• නිෂ්පාදකයා: ${seller}\n` +
-                `• ප්‍රදේශය: ${loc}\n` +
-                `• දුරකථනය: ${phone}\n` +
-                `• භාණ්ඩය: ${title}\n` +
-                `• කාණ්ඩය: ${cat}\n` +
-                `• ප්‍රමාණය: ${qty}\n` +
-                `• විකුණුම් මිල: රු. ${calc.finalPrice}/=\n` +
-                `*ගෙවිය යුතු ලියාපදිංචි ගාස්තුව: රු. ${regCalc.finalRegTotal}/=*`
-            );
-
-            window.open(`https://wa.me/${settings.whatsapp}?text=${msg}`, '_blank');
-            closeModal('userProdModal');
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = sampleProducts.filter(p => p.title.toLowerCase().includes(q) || p.location.toLowerCase().includes(q));
+            renderProducts(filtered);
         }
 
         function handleUserAdSubmit(e) {
             e.preventDefault();
-            const name = document.getElementById("uaName").value;
-            const phone = document.getElementById("uaPhone").value;
-            const title = document.getElementById("uaTitle").value;
-            const days = document.getElementById("uaDays").value;
-
-            const msg = encodeURIComponent(
-                `*EDO දැන්වීම් පළකිරීමේ ඉල්ලීම*\n\n` +
-                `• ව්‍යාපාරය: ${name}\n` +
-                `• දුරකථනය: ${phone}\n` +
-                `• මාතෘකාව: ${title}\n` +
-                `• කාලසීමාව: දින ${days}ක්`
-            );
-
-            window.open(`https://wa.me/${settings.whatsapp}?text=${msg}`, '_blank');
+            const name = document.getElementById('uaName').value;
+            const phone = document.getElementById('uaPhone').value;
+            const title = document.getElementById('uaTitle').value;
+            const wa = localStorage.getItem('edo_main_wa') || "94784693750";
+            const msg = encodeURIComponent(`*EDO දැන්වීම් ඉල්ලීම:*\nනම: ${name}\nදුරකථනය: ${phone}\nමාතෘකාව: ${title}`);
+            window.open(`https://wa.me/${wa}?text=${msg}`, '_blank');
             closeModal('userAdModal');
         }
 
-        // Initialize All Listeners
-        syncSettingsFromFirebase();
-        syncAdsFromFirebase();
-        syncProductsFromFirebase();
-        loadLiveFeedbacks();
-
-        window.onclick = function(e) {
-            ['userProdModal', 'userAdModal', 'adminModal', 'userFeedbackModal', 'cartModal', 'directMsgModal', 'callReqModal'].forEach(id => {
-                const m = document.getElementById(id);
-                if (e.target === m) closeModal(id);
-            });
-        };
+        // Start Banner & Render Products
+        startAdSlider();
+        renderProducts(sampleProducts);
     </script>
 </body>
 </html>
